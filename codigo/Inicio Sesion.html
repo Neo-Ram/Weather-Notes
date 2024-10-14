@@ -8,26 +8,23 @@
 </head>
 <body class="loginback">
     <section class="boxlogin">
-        <form action="get" class="login">
-            <h1>Iniciar Sesion</h1>
+        <form id="loginForm" class="login">
+            <h1>Iniciar Sesión</h1>
             
             <label for="correoi">Ingrese su correo electronico</label> <br>
-            <input type="email" name="correo" id="correoi"> <br>
+            <input type="email" name="correo" id="correoi" required> <br>
 
             <label for="contraseñai">Ingrese la contraseña</label><br>
-            <input type="password" name="contraseña" id="contraseñai"><br>
+            <input type="password" name="contraseña" id="contraseñai" required><br>
 
             <a href="#">¿Olvido su contraseña?</a><br>
-            <a href="">Crear Cuenta</a><br><br>
+            <a href="#">Crear Cuenta</a><br><br>
 
-            <!-- Probablemente necesites agregar algo para que te envie a la pagina siguiente ya que button por si 
-            solo no hara nada, ya que el botton recolecte los datos me dices para hacer que haga alerts de correcto o no... -->
-            <button>Iniciar Sesion</button>
-
-
+            <button type="submit">Iniciar Sesión</button>
         </form>
-
     </section>
+
+    <script src="javascript/loginfirebase.js"></script>
     
 </body>
 </html>

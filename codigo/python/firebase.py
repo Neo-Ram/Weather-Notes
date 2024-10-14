@@ -34,6 +34,6 @@ def find_user_by_email(email):
 
 
 # Llamar a la función para listar todos los usuarios
-#list_users()
-# Ejemplo de uso
+list_users()
+# Encontrar un usuario por email
 find_user_by_email("cota123@gmail.com")
