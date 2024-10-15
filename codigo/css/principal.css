@@ -7,13 +7,12 @@ html{
 /* Login */
 .boxlogin{
     display: flex;
-    justify-content: center;
-    margin-top: 10%;
 }
 .login{
     padding: 1%;
     border-radius: 20px;
     text-align: center;
-    width: 25%;
+    width: 50%;
     background-color: rgba(0, 0, 0, 0.12) ;
+    margin-top: 4%;
 }
