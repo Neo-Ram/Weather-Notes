@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app
@@ -22,11 +22,20 @@ cred = credentials.Certificate('C:/Users/Omarius/Downloads/weathernotes-8e4e9-fi
 initialize_app(cred)
 db = firestore.client()
 
+#================================================================================================
+#Modelo de solicitud de registro
+class RegisterRequest(BaseModel):
+    username: str
+    correo: str 
+    contraseña: str
+
 # Modelo de solicitud de login
 class LoginRequest(BaseModel):
     correo: str
     contraseña: str
 
+#================================================================================================
+#Endpoint de Iniciar sesion
 @app.post("/login")
 async def login(request: LoginRequest):
     # Consultar el usuario por correo
@@ -48,3 +57,26 @@ async def login(request: LoginRequest):
     else:
        
        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+#================================================================================================
+#Endpoint de Registrar
+@app.post("/registrar")
+async def registrar(request: RegisterRequest):
+    #Verificar si ya existe un usuario con el correo proporcionado
+    users_ref = db.collection('usuarios')
+    query = users_ref.where('correo', '==', request.correo).stream()
+
+    for user in query:
+        #Si se encuentra mandar una HttpException
+        raise HTTPException(status_code= status.HTTP_400_BAD_REQUEST, detail="El correo ya se encuentra en uso")
+    
+    #Si no existe pues se crea el usuario padrino
+    #Crear el nuevo documento
+    new_user_data = {
+        'username': request.username,
+        'correo': request.correo,
+        'password': request.contraseña
+    }
+    db.collection('usuarios').add(new_user_data)
+
+    #Mandar un mensaje de exito
+    return {"message": "Usuario registrado exitosamente"}

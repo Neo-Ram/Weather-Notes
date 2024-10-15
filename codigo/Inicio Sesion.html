@@ -7,7 +7,7 @@
     <title>Iniciar Sesión</title>
 </head>
 <body class="loginback">
-    <button onclick="mostrarAlerta()">Picale aqui omar</button>
+    <button onclick="mostrarAlerta()">Picale aqui omar,ya le pique</button>
     <section class="boxlogin">
         <form id="loginForm" class="login">
             <h1>Iniciar Sesión</h1>
@@ -24,20 +24,20 @@
             <button type="submit">Iniciar Sesión</button>
         </form>
 
-        <form class="login">
+        <form id="registerForm" class="login">
             <h1>Registrarse</h1>
 
             <label for="nombreusuario">Ingrese un nombre de usuario</label><br>
             <input type="text" name="nombreusuario" id="nombreusuario" required><br>
 
             <label for="correor"> Ingrese su correo electronico</label><br>
-            <input type="email" name="correor" id="correor"><br>
+            <input type="email" name="correor" id="correor" required><br>
 
             <label for="contraseñar">Ingrese una contraseña</label><br>
-            <input type="password" name="contraseñar" id="contraseñar"><br>
+            <input type="password" name="contraseñar" id="contraseñar" required><br>
 
             <label for="confircontraseña">Ingrese una contraseña</label><br>
-            <input type="password" name="confircontraseña" id="confircontraseña"><br>
+            <input type="password" name="confircontraseña" id="confircontraseña" required><br>
 
             <button type="submit">Registrarse</button>
             
@@ -55,6 +55,7 @@
             alert("No se si deba agregar algo mas, como una pagina para esperar a que aceptes el correo o algo asi");
         }
     </script>
+    <script src="javascript/registrarFIREBASE.js"></script>
     
 </body>
 </html>
