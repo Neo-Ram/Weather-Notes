@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 import firebase_admin
-from firebase_admin import credentials, firestore, initialize_app
+from firebase_admin import credentials, firestore, initialize_app, auth
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -69,14 +69,35 @@ async def registrar(request: RegisterRequest):
         #Si se encuentra mandar una HttpException
         raise HTTPException(status_code= status.HTTP_400_BAD_REQUEST, detail="El correo ya se encuentra en uso")
     
+    try:
+        # Crear usuario en Firebase Authentication
+        user = auth.create_user(
+            email=request.correo,
+            password=request.contraseña,
+            display_name=request.username
+        )
+        
+        # Guardar el usuario en Firestore con su UID como ID del documento
+        new_user_data = {
+            'username': request.username,
+            'correo': request.correo,
+            'contraseña':request.contraseña,
+            'uid': user.uid  # Guardamos el UID de Firebase Authentication
+        }
+        db.collection('usuarios').document(user.uid).set(new_user_data)
+
+        return {"message": "Usuario registrado exitosamente"}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     #Si no existe pues se crea el usuario padrino
     #Crear el nuevo documento
-    new_user_data = {
-        'username': request.username,
-        'correo': request.correo,
-        'password': request.contraseña
-    }
-    db.collection('usuarios').add(new_user_data)
+    # new_user_data = {
+    #     'username': request.username,
+    #     'correo': request.correo,
+    #     'password': request.contraseña
+    # }
+    # db.collection('usuarios').add(new_user_data)
 
-    #Mandar un mensaje de exito
-    return {"message": "Usuario registrado exitosamente"}
+    # #Mandar un mensaje de exito
+    # return {"message": "Usuario registrado exitosamente"}
