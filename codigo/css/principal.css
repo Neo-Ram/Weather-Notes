@@ -1,6 +1,7 @@
 /* Predeterminados */
 html{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #fcfcfc;
 
 }
 
@@ -13,6 +14,59 @@ html{
     border-radius: 20px;
     text-align: center;
     width: 50%;
-    background-color: rgba(0, 0, 0, 0.12) ;
+
+    color: #4D4D4D;
+}
+
+.login h1{
+    font-size: 2.8em;
+}
+
+.login label{
+    font-size: 1.4em;
+    display: grid;
+    margin: 3% 0;
+}
+
+.login input{
+    background-color: rgba(77, 77, 77, 0.1);
+    border: none;
+    border-bottom: solid 2px #4D4D4D;
+    border-radius: 3px;
+    width: 50%;
+    height: 4%;
+    color: #4D4D4D;
+}
+
+.olvidastecon{
+    text-decoration: none;
+    color: #4D4D4D;
+    display: grid;
+    margin-top: 10%;
+    font-size: large;
+}
+
+.olvidastecon :hover{
+    color: #0094FF;
+}
+.isboton{
+    background-color: #0094FF;
+    color: #fcfcfc;
+    border-color: #4D4D4D;
+    border: none;
+    border-radius: 5px;
+    font-size: large;
+    padding: 0.6% 3%;
     margin-top: 4%;
 }
+.isboton:hover{
+    background-color: #0072c4;
+}
+
+.iscrearcuenta{
+border: none;
+background-color: #fcfcfc;
+color: #4D4D4D;
+margin: 10% 0 0 50%;
+}
+
