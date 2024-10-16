@@ -7,26 +7,23 @@
     <title>Iniciar Sesión</title>
 </head>
 <body class="loginback">
+    <button onclick="mostrarAlerta()">Picale aqui omar,ya le pique</button>
     <section class="boxlogin">
-        <!-- Iniciar sesion -->
         <form id="loginForm" class="login">
-            <h1>Iniciar Sesión</h1><br>
+            <h1>Iniciar Sesión</h1>
             
-            <label for="correoi"><b>Ingrese su correo electronico</b></label> <br>
+            <label for="correoi">Ingrese su correo electronico</label> <br>
             <input type="email" name="correo" id="correoi" required> <br>
 
-            <label for="contraseñai"><b>Ingrese la contraseña</b></label><br>
+            <label for="contraseñai">Ingrese la contraseña</label><br>
             <input type="password" name="contraseña" id="contraseñai" required><br>
 
-            <a href="#" class="olvidastecon"> <b>¿Olvido su contraseña?</b></a><br>
+            <a href="#">¿Olvido su contraseña?</a><br>
+            <a href="#">Crear Cuenta</a><br><br>
 
-            <button type="submit" class="isboton">Acceder</button><br>
-            <button class="iscrearcuenta">Crear Cuenta</button>
-
-            
+            <button type="submit">Iniciar Sesión</button>
         </form>
 
-        <!-- Registrarse -->
         <form id="registerForm" class="login">
             <h1>Registrarse</h1>
 
@@ -43,9 +40,14 @@
             <input type="password" name="confircontraseña" id="confircontraseña" required><br>
 
             <button type="submit">Registrarse</button>
+            
+
+            
+
+
+
         </form>
     </section>
-<<<<<<< HEAD
     <script src="javascript/loginfirebase.js" type="module"></script>
     <script>
         function mostrarAlerta() {
@@ -53,11 +55,6 @@
         }
     </script>
     <script src="javascript/registrarFIREBASE.js" type="module"></script>
-=======
-
-    <script src="javascript/loginfirebase.js"></script>
-    <script src="javascript/registrarFIREBASE.js"></script>
->>>>>>> f0b147b73f76a816e861876f4553ac27539b5bf9
     
 </body>
 </html>
