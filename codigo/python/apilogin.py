@@ -55,8 +55,7 @@ async def login(request: LoginRequest):
         
         return {"message": "Inicio de sesion exitoso2"}
     else:
-       
-       raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
 #================================================================================================
 #Endpoint de Registrar
 @app.post("/registrar")

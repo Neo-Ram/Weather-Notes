@@ -7,14 +7,151 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+::selection{
+    background-color: #2AA5FF;
+    color: #fff;
+}
 body {
-    background-color: #c4e6ff;
-    background: linear-gradient(to right, #e2e2e2, #c4e6ff); /* Coma entre colores */
+    /* background-color: #c4e6ff; */
+    background: linear-gradient(to right, #e2e2e2, #c4e6ff);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
+}
+
+/* Nubesitas */
+#clouds{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Para que las nubes estén en el fondo */
+    padding: 100px 0;
+    background: #c9dbe9;
+    background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+    background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
+    background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+}
+
+/*Time to finalise the cloud shape*/
+.cloud {
+    width: 200px; 
+    height: 60px;
+    background: #fff;
+    border-radius: 200px;
+    position: relative;
+}
+
+.cloud:before, .cloud:after {
+    content: '';
+    position: absolute; 
+    background: #fff;
+    border-radius: 100px;
+}
+
+.cloud:before {
+    width: 100px; 
+    height: 80px;
+    top: -15px; 
+    left: 10px;
+    transform: rotate(30deg);
+}
+
+.cloud:after {
+    width: 120px; 
+    height: 120px;
+    top: -55px; 
+    right: 15px;
+    transform: rotate(30deg);
+}
+
+/*Time to animate*/
+.x1 {
+    animation: moveclouds 15s linear infinite;
+    -webkit-animation: moveclouds 15s linear infinite;
+    -moz-animation: moveclouds 15s linear infinite;
+    -o-animation: moveclouds 15s linear infinite;
+}
+
+.x2 {
+    left: 200px;
+    transform: scale(0.6);
+    opacity: 0.6;
+    animation: moveclouds 25s linear infinite;
+    -webkit-animation: moveclouds 25s linear infinite;
+    -moz-animation: moveclouds 25s linear infinite;
+    -o-animation: moveclouds 25s linear infinite;
+}
+
+.x3 {
+    left: -250px; 
+    top: -200px;
+    transform: scale(0.8);
+    opacity: 0.8;
+    animation: moveclouds 20s linear infinite;
+    -webkit-animation: moveclouds 20s linear infinite;
+    -moz-animation: moveclouds 20s linear infinite;
+    -o-animation: moveclouds 20s linear infinite;
+}
+
+.x4 {
+    left: 470px; 
+    top: -250px;
+    transform: scale(0.75);
+    opacity: 0.75;
+    animation: moveclouds 18s linear infinite;
+    -webkit-animation: moveclouds 18s linear infinite;
+    -moz-animation: moveclouds 18s linear infinite;
+    -o-animation: moveclouds 18s linear infinite;
+}
+
+.x5 {
+    left: -150px; 
+    top: -150px;
+    transform: scale(0.8);
+    opacity: 0.8;
+    animation: moveclouds 20s linear infinite;
+    -webkit-animation: moveclouds 20s linear infinite;
+    -moz-animation: moveclouds 20s linear infinite;
+    -o-animation: moveclouds 20s linear infinite;
+}
+
+/* Standard keyframes */
+@keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+
+/* Vendor-specific keyframes for older browsers */
+@-webkit-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+@-moz-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+@-o-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+
+
+@-webkit-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+@-moz-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
+}
+@-o-keyframes moveclouds {
+    0% { margin-left: 1000px; }
+    100% { margin-left: -1000px; }
 }
 
 
@@ -30,12 +167,29 @@ body {
 }
 
 
+/* Estilos para el pin */
+.pin {
+    position: absolute;
+    top: 100px; /* Ajusta según sea necesario para que parezca clavado */
+    left: 52%;
+    transform: translateX(-50%);
+    z-index: 1001;
+    width: 50px; /* Ajusta el tamaño si es necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    filter: drop-shadow(2px 5px 4px #484848);
+}
+
+.pin:hover{
+    cursor: pointer;
+}
+
 .container p{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
 }
+
 
 .container span {
     font-size: 12px;
@@ -170,13 +324,13 @@ body {
     height: 100%;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
-    border-radius: 150px 0 0 100px;
+    border-radius: 70px 0 0 40px;
     z-index: 1000;
 }
 
 .container.active .toggle-container{
     transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
+    border-radius: 0 70px 40px 0;
 }
 
 .toggle{
