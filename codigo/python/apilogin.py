@@ -38,24 +38,30 @@ class LoginRequest(BaseModel):
 #Endpoint de Iniciar sesion
 @app.post("/login")
 async def login(request: LoginRequest):
-    # Consultar el usuario por correo
-    users_ref = db.collection('usuarios')
-    query = users_ref.where('correo', '==', request.correo).stream()
+    try:
+        # Consultar el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', request.correo).stream()
 
-    user_found = None
-    for user in query:
-        user_data = user.to_dict()
-        
-        # Comparar la contraseña directamente
-        if user_data['password'] == request.contraseña:
-            user_found = user_data
-            break
+        user_found = None
+        for user in query:
+            user_data = user.to_dict()
+            
+            # Comparar la contraseña directamente
+            if user_data['contraseña'] == request.contraseña:  # Cambié 'password' por 'contraseña'
+                user_found = user_data
+                break
 
-    if user_found:
-        
-        return {"message": "Inicio de sesion exitoso2"}
-    else:
-        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+        if user_found:
+            return {"message": "Inicio de sesión exitoso"}
+        else:
+            raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+
+    except Exception as e:
+        # Manejar excepciones y devolver el error
+        print(f"Error en el login: {str(e)}")  # Agrega esto para registrar el error
+        raise HTTPException(status_code=500, detail="Error interno del servidor")
+
 #================================================================================================
 #Endpoint de Registrar
 @app.post("/registrar")
