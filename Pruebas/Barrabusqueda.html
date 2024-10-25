@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #232323;
+    }
+    .container{
+        position: relative;
+    }
+    input{
+        padding: 10px;
+        padding-right: 35px;
+        border-radius: 5px;
+        border: 0;
+        outline: none;
+        font-size: 1rem;
+    }
+    button{
+        background-color: rgb(42, 165, 255);
+        padding: 10px 15px;
+        position: absolute;
+        border: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 0 5px 5px 0;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: rgba(0, 0, 0, .5);
+    }
+</style>
+<body>
+    <div class="container">
+        <input type="text" placeholder="buscar...">
+        <button><img src="/codigo/assets/Icons/searchbar.svg" alt="lupa"></button>
+    </div>
+    
+</body>
+
+</html>
