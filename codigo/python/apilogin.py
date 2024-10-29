@@ -4,9 +4,13 @@ import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, auth
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
+import httpx
 
 # Crear instancia de FastAPI
 app = FastAPI()
+
+#API KEY
+API_KEY = '41b4a934fb8c0f06f57497c2ccada01f'
 
 # Configurar CORS
 app.add_middleware(
@@ -95,14 +99,32 @@ async def registrar(request: RegisterRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    #Si no existe pues se crea el usuario padrino
-    #Crear el nuevo documento
-    # new_user_data = {
-    #     'username': request.username,
-    #     'correo': request.correo,
-    #     'password': request.contraseña
-    # }
-    # db.collection('usuarios').add(new_user_data)
+#================================================================================================
+@app.get("/clima/{ciudad}")
+async def obtener_clima(ciudad: str):
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={API_KEY}&units=metric"
+            )
 
-    # #Mandar un mensaje de exito
-    # return {"message": "Usuario registrado exitosamente"}
+            if response.status_code != 200:
+                raise HTTPException(status_code=response.status_code, detail=response.json())
+
+            data = response.json()
+
+            # Extraer la información deseada, incluyendo el nombre de la ciudad
+            clima_info = {
+                "ciudad": data['name'],  # Añadir el nombre de la ciudad
+                "temperatura": data['main']['temp'],
+                "descripcion": data['weather'][0]['description'],
+                "temp_maxima": data['main']['temp_max'],
+                "temp_minima": data['main']['temp_min'],
+                "sensacion_termica": data['main']['feels_like'],
+                "humedad": data['main']['humidity'],
+                "velocidad_viento": data['wind']['speed']
+            }
+            return clima_info
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

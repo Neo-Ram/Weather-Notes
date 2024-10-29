@@ -23,6 +23,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             const data = await response.json();
             console.log("Inicio correctamente");
             alert("Inicio de sesión exitoso");
+            // Redirigir al usuario a otra página HTML
+            window.location.href = "clima.html";
             //alert("Inicio de sesión exitoso: " + data.message);
             // Aquí podrías redirigir a otra página si quieres, como:
             // window.location.href = "/dashboard";

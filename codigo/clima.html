@@ -14,17 +14,19 @@
 
         <div class="barrabusqueda">
             <div class="barrita">
-                <input type="text" placeholder="Buscar Ciudad">
-                <button>Lupa xD</button>
+                <input type="text" placeholder="Buscar Ciudad" id="ciudadInput">
+                <button id="buscarButton">Lupa xD</button>
             </div>
 
         </div>
 
-        <div class="infoclima">
-            <h2>Ciudad</h2>
-            <h1>Grados</h1>
-            <h3>soleado/nublado etc</h3>
-            <h3>TemMinima/TempMaxima sensacion termica de X</h3>
+        <div class="infoclima" id="resultado">
+            <h2 id="ciudadNombre">Ciudad</h2>
+            <h1 id="temperatura">Grados</h1>
+            <h3 id="descripcion">soleado/nublado etc</h3>
+            <h3 id="tempMinimaMaxima">Min: TempMinima°/Max: TempMaxima°, Sensación térmica: <span id="sensacionTermica">X</span></h3>
+            <h3 id="humedad">Humedad: <span id="humedadValue">X</span>%</h3>
+            <h3 id="velocidadViento">Velocidad del viento: <span id="velocidadVientoValue">X</span> m/s</h3>
         </div>
     </section>
 
@@ -48,5 +50,6 @@
 
 
     </form>
+    <script src="javascript/busquedaclima.js"></script>
 </body>
 </html>
