@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background: linear-gradient(to bottom, #2AA5FF, #76c6ff);
+    height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+::selection{
+    background-color: #2aa5ff;
+    color: #2AA5FF;
+}
+
+.pronosticoprincipal{   
+    display: flex;
+    margin: 10px;
+}
+.barralateral {
+    height: 100%; /* Full height */
+    width: 0; /* Initially hidden */
+    position: fixed; /* Fixed over the content */
+    top: 0;
+    left: 0;
+    background-color: rgba(42, 165, 255, 0.8); /* Black with some transparency */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* Smooth transition */
+    padding-top: 90px; /* Add some top padding */
+    z-index: 1000; /* Make sure it's above everything */
+    
+}
+
+.barralateral a {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: color 0.3s ease; /* Suaviza el cambio de color */
+}
+
+.barralateral a::after {
+    content: ''; /* Pseudo-elemento vacío para el subrayado */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0; /* Inicia invisible */
+    height: 2px; /* Grosor del subrayado */
+    background-color: #fff; /* Color del subrayado */
+    transition: width 0.3s ease; /* Animación suave */
+}
+
+.barralateral a:hover {
+    color: #f1f1f1; /* Cambia el color del texto al pasar */
+}
+
+.barralateral a:hover::after {
+    width: 100%; /* Se expande completamente en hover */
+}
+
+.barralateral .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;
+}
+
+  /* Hamburger button styles */
+.hamburger-btn {
+    font-size: 35px;
+    background-color: rgba(17, 17, 17, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 15px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100; /* Ensure it's above the barralateral */
+    transition: 0.3s;
+}
+
+.hamburger-btn:hover {
+    animation: shake 0.5s ease-in-out; /* Aplica la animación */
+}
+
+/* Animación de "temblor" */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-3px); /* Desplaza hacia la izquierda */
+    }
+    50% {
+        transform: translateX(3px); /* Desplaza hacia la derecha */
+    }
+    75% {
+        transform: translateX(-3px); /* Vuelve hacia la izquierda */
+    }
+    100% {
+        transform: translateX(0); /* Regresa a la posición original */
+    }
+}
+
+
+  /* Active barralateral state */
+.barralateral.active {
+    width: 250px; /* Width of the open barralateral */
+}
+
+  /* Content remains unaffected */
+.content {
+    padding: 20px;
+}
+.iconoclima{
+    width: 30%;
+
+    margin-top: 3%;
+
+}
+.iconoclima img{
+    width: 75%;
+    margin-left:5%;
+}
+
+.barrabusqueda{
+    width: 33%;
+    
+}
+
+.barrita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+.barrita input{
+    width: 350px;
+    padding :9px;
+    padding-right: 35px;
+    border-radius: 8px 0px 0px 8px;
+    border: 0;
+    outline: none;
+}
+.barrita button{
+    background-color: #2AA5FF;
+    border: solid;
+    border-color: #fff;
+    padding: 3px 10px;
+    top: 0;
+    bottom: 0;
+    border-radius: 0 8px 8px 0;
+    color: #fff;
+    
+}
+
+.barrita button:hover{
+    background-color: #1b86d2;
+}
+.barrita button img{
+    width: 20px;
+    height: 20px;
+    color: #2AA5FF;
+}
+
+
+.infoclima{
+    width: 33%;
+    color: #fff;
+    text-align: right;
+    margin-right: 5%;
+}
+.infoclima h1{
+    font-size: 4em;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+.infoclima h2{
+    font-size: 1.8em;
+    margin-top: 7%;
+}
+.infoclima h3{
+    font-size: 1em;
+    margin-bottom: 6%;
+}
+
+.pronosticodiario{
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    display: flex;
+}
+
+.horas {
+    margin: 0.8% 1%;
+    width: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out; /* Agregar transición */
+    padding-top: 0.5%;
+}
+
+.horas:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.horas p{
+    text-align: center;
+    color: #fff;
+    margin-bottom: 7%;
+    font-weight: bold;
+}
+.horas img{
+    width: 35%;
+    margin-bottom: 10px;
+}
+.horas .notita{
+    width: 25%;
+}
+
+.horas .problluvia{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.horas .problluvia img{
+    width: 15%;
+}
+
+/* Tarjetas de notas y clima proximo */
+.tarjetas{
+    width: 90%;
+    display: flex;
+    margin: auto;
+    margin-top: 2.5%;
+    
+}
+
+.tarjetas .notas{
+    width: 45%;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-right: 10%;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1% 1.5%;
+    position: relative;
+}
+
+.tarjetas .notas h1, h3, p{
+    margin-bottom: 1%;
+}
+
+.tarjetas .notas button {
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    position: absolute; /* Posiciona el botón relativo al contenedor */
+    bottom: 10px; /* Espaciado desde el borde inferior */
+    right: 20px; /* Espaciado desde el borde derecho */
+    z-index: 10; /* Asegura que esté sobre otros elementos */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.tarjetas .pronosticodias {
+    width: 45%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1% 1.5%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tarjetas .pronosticodias .lineapronosticodias {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    width: 100%;
+}
+
+.tarjetas .pronosticodias .lineapronosticodias h3 {
+    width: 20%;
+    margin: 0;
+    color: #fff;
+}
+.tarjetas .pronosticodias .lineapronosticodias img{
+    width: 35px;
+}
+.tarjetas .pronosticodias .lineapronosticodias img.gotita {
+    width: 20px;
+    margin: 0 5px;
+    color: #fff;
+    margin-left: 30%;
+    
+}
+
+.tarjetas .pronosticodias .lineapronosticodias p {
+    margin: 0 10px;
+    color: #fff;
+    margin-right: 10%;
+}
+.tarjetas .pronosticodias .lineapronosticodias h2 {
+    margin-left: auto;
+    color: #fff;
+}
+
+.indicadores {
+    width: 90%;
+    margin: auto;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.indicadores-superiores,
+.indicadores-inferiores {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.indicador {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.33% - 14px);
+    color: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.indicador:hover {
+    transform: scale(1.02);
+}
+
+.indicador h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.indicador h2 {
+    font-size: 1.8em;
+    color: #fff;
+}
+
+.horas button {
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.horas button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+#calendarioContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* Estilos para hacer el calendario más grande */
+.flatpickr-calendar {
+    width: 400px !important; /* Calendario más ancho */
+    font-size: 1.2em !important; /* Texto más grande */
+}
+
+.flatpickr-day {
+    height: 50px !important; /* Días más grandes */
+    line-height: 50px !important;
+}
+
+.flatpickr-time {
+    height: 50px !important; /* Selector de hora más grande */
+}
+
+.flatpickr-hour, .flatpickr-minute {
+    font-size: 1.2em !important;
+}
+
+

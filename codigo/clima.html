@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather Notes</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-    <section>
+    <section class="pronosticoprincipal">
+        <div class="barralateral">
+            <a href="#" class="close-btn" onclick="toggleBarraLateral()">×</a>
+            <a href="#section1">Sección 1</a>
+            <a href="#section2">Sección 2</a>
+            <a href="#section3">Sección 3</a>
+        </div>
+        
+        <button class="hamburger-btn" onclick="toggleBarraLateral()">☰</button>
+        
+        <div class="content">
+        </div>
         <div class="iconoclima">
             <img src="assets/Icons/Sol.png" alt="sol">
 
@@ -15,7 +29,7 @@
         <div class="barrabusqueda">
             <div class="barrita">
                 <input type="text" placeholder="Buscar Ciudad" id="ciudadInput">
-                <button id="buscarButton">Lupa xD</button>
+                <button id="buscarButton"><img src="assets/Icons/searchbar.svg" alt=""></button>
             </div>
 
         </div>
@@ -26,30 +40,195 @@
             <h3 id="descripcion">soleado/nublado etc</h3>
             <h3 id="tempMinimaMaxima">Min: TempMinima°/Max: TempMaxima°, Sensación térmica: <span id="sensacionTermica">X</span></h3>
             <h3 id="humedad">Humedad: <span id="humedadValue">X</span>%</h3>
-            <h3 id="velocidadViento">Velocidad del viento: <span id="velocidadVientoValue">X</span> m/s</h3>
         </div>
+
+        
     </section>
 
     <section class="pronosticodiario">
+        <div class="horas">
+            <p>2:00pm</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
 
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+
+        <div class="horas">
+            <p>x</p>
+            <img src="assets/Icons/night.png" alt="">
+            <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
+            <div class="problluvia">
+                <img src="assets/Icons/drop.png" alt="gotita">
+                <p>x%</p>
+            </div>
+        </div>
+        <div class="horas">
+            <button id="btnCalendario">+</button>
+            <div id="calendarioContainer"></div>
+        </div>
     </section>
 
     <section class="tarjetas">
         <div class="notas">
-
+            <h1>Notas proximas </h1>
+            <h3>2pm</h3>
+            <p>Este es un ejemlo de una nota</p>
+            <button>Ver todas</button>
 
         </div>
 
         <div class="pronosticodias">
+            <div class="lineapronosticodias">
+                <h3>hoy</h3>
+                <img src="assets/Icons/drop.png" alt="" class="gotita">
+                <p>x%</p>
+                <img src="assets/Icons/clouds.png" alt="">
+                <h2>28/40</h2>
+            </div>
+            
+            <div class="lineapronosticodias">
+                <h3>hoy</h3>
+                <img src="assets/Icons/drop.png" alt="" class="gotita">
+                <p>x%</p>
+                <img src="assets/Icons/clouds.png" alt="">
+                <h2>28/40</h2>
+            </div>
 
+            <div class="lineapronosticodias">
+                <h3>hoy</h3>
+                <img src="assets/Icons/drop.png" alt="" class="gotita">
+                <p>x%</p>
+                <img src="assets/Icons/clouds.png" alt="">
+                <h2>28/40</h2>
+            </div>
 
+            <div class="lineapronosticodias">
+                <h3>hoy</h3>
+                <img src="assets/Icons/drop.png" alt="" class="gotita">
+                <p>x%</p>
+                <img src="assets/Icons/clouds.png" alt="">
+                <h2>28/40</h2>
+            </div>
+            
+            <div class="lineapronosticodias">
+                <h3>hoy</h3>
+                <img src="assets/Icons/drop.png" alt="" class="gotita">
+                <p>x%</p>
+                <img src="assets/Icons/clouds.png" alt="">
+                <h2>28/40</h2>
+            </div>
         </div>
 
     </section>
 
-
+    <section class="indicadores">
+        <div class="indicadores-superiores">
+            <div class="indicador">
+                <h3>Velocidad del viento</h3>
+                <h2>15 km/h</h2>
+            </div>
+            <div class="indicador">
+                <h3>Humedad</h3>
+                <h2>65%</h2>
+            </div>
+            <div class="indicador">
+                <h3>Punto de rocío</h3>
+                <h2>12°C</h2>
+            </div>
+        </div>
+        
+        <div class="indicadores-inferiores">
+            <div class="indicador">
+                <h3>Presión atmosférica</h3>
+                <h2>1013 hPa</h2>
+            </div>
+            <div class="indicador">
+                <h3>Índice UV</h3>
+                <h2>6</h2>
+            </div>
+            <div class="indicador">
+                <h3>Visibilidad</h3>
+                <h2>10 km</h2>
+            </div>
+        </div>
+    </section>
 
     </form>
     <script src="javascript/busquedaclima.js"></script>
+    <script src="javascript/barradesplegabe.js"></script>
+    <script src="javascript/clima+.js"></script>
 </body>
 </html>
