@@ -9,16 +9,16 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
+    <div class="barralateral">
+        <a href="#" class="close-btn" onclick="toggleBarraLateral()">×</a>
+        <a href="#section1">Sección 1</a>
+        <a href="#section2">Sección 2</a>
+        <a href="#section3">Sección 3</a>
+    </div>
+    
+    <button class="hamburger-btn" onclick="toggleBarraLateral()">☰</button>
+
     <section class="pronosticoprincipal">
-        <div class="barralateral">
-            <a href="#" class="close-btn" onclick="toggleBarraLateral()">×</a>
-            <a href="#section1">Sección 1</a>
-            <a href="#section2">Sección 2</a>
-            <a href="#section3">Sección 3</a>
-        </div>
-        
-        <button class="hamburger-btn" onclick="toggleBarraLateral()">☰</button>
-        
         <div class="content">
         </div>
         <div class="iconoclima">
@@ -46,7 +46,7 @@
     </section>
 
     <section class="pronosticodiario">
-        <div class="horas">
+        <div class="horas" id="hora1">
             <p>2:00pm</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora2">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora3">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora4">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora5">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora6">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -106,7 +106,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora7">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora8">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -126,7 +126,7 @@
             </div>
         </div>
 
-        <div class="horas">
+        <div class="horas" id="hora9">
             <p>x</p>
             <img src="assets/Icons/night.png" alt="">
             <img src="assets/Icons/post-it (1).png" alt="nota" class="notita">
@@ -135,7 +135,7 @@
                 <p>x%</p>
             </div>
         </div>
-        <div class="horas">
+        <div class="horas" id="hora10">
             <button id="btnCalendario">+</button>
             <div id="calendarioContainer"></div>
         </div>
@@ -151,7 +151,7 @@
         </div>
 
         <div class="pronosticodias">
-            <div class="lineapronosticodias">
+            <div class="lineapronosticodias" id="dia1">
                 <h3>hoy</h3>
                 <img src="assets/Icons/drop.png" alt="" class="gotita">
                 <p>x%</p>
@@ -159,7 +159,7 @@
                 <h2>28/40</h2>
             </div>
             
-            <div class="lineapronosticodias">
+            <div class="lineapronosticodias" id="dia2">
                 <h3>hoy</h3>
                 <img src="assets/Icons/drop.png" alt="" class="gotita">
                 <p>x%</p>
@@ -167,7 +167,7 @@
                 <h2>28/40</h2>
             </div>
 
-            <div class="lineapronosticodias">
+            <div class="lineapronosticodias" id="dia3">
                 <h3>hoy</h3>
                 <img src="assets/Icons/drop.png" alt="" class="gotita">
                 <p>x%</p>
@@ -175,7 +175,7 @@
                 <h2>28/40</h2>
             </div>
 
-            <div class="lineapronosticodias">
+            <div class="lineapronosticodias" id="dia4">
                 <h3>hoy</h3>
                 <img src="assets/Icons/drop.png" alt="" class="gotita">
                 <p>x%</p>
@@ -183,7 +183,7 @@
                 <h2>28/40</h2>
             </div>
             
-            <div class="lineapronosticodias">
+            <div class="lineapronosticodias" id="dia5">
                 <h3>hoy</h3>
                 <img src="assets/Icons/drop.png" alt="" class="gotita">
                 <p>x%</p>
@@ -226,9 +226,30 @@
         </div>
     </section>
 
-    </form>
+    <!--Seccion para crear notas que se oculta automaticamente-->
+    <section class="crearnota"  >
+        <div class="titulonota">
+            <input type="text" placeholder="Titulo de la nota">
+            <input type="date" class="calendario-input" id="fechaNota">
+        </div>
+        <hr>
+        <div class="contenidonota">
+            <textarea placeholder="Escribe tu nota aquí"></textarea>
+        </div>
+        <div class="botonesnota">
+            <button>ubicacion</button>
+            <h3>clima de la ubicacion</h3>
+            <div class="botonesnota-inferior">
+                <button>Guardar</button>
+                <button>Cancelar</button>
+            </div>
+        </div>
+
+    </section>
     <script src="javascript/busquedaclima.js"></script>
     <script src="javascript/barradesplegabe.js"></script>
     <script src="javascript/clima+.js"></script>
+    <script src="javascript/animacion.js"></script>
+    <script src="javascript/crearnota.js"></script>
 </body>
 </html>

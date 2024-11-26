@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+section {
+    transition: all 0.5s ease-in-out;
+    will-change: transform, opacity;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -15,7 +20,7 @@ body{
 }
 
 ::selection{
-    background-color: #2aa5ff;
+    background-color: #fff;
     color: #2AA5FF;
 }
 
@@ -24,46 +29,45 @@ body{
     margin: 10px;
 }
 .barralateral {
-    height: 100%; /* Full height */
-    width: 0; /* Initially hidden */
-    position: fixed; /* Fixed over the content */
+    height: 100vh;
+    width: 0;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(42, 165, 255, 0.8); /* Black with some transparency */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* Smooth transition */
-    padding-top: 90px; /* Add some top padding */
-    z-index: 1000; /* Make sure it's above everything */
-    
+    background-color: rgba(42, 165, 255, 0.8);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 90px;
+    z-index: 1000;
 }
 
 .barralateral a {
-    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    position: relative;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 18px;
     color: #fff;
     display: block;
-    transition: color 0.3s ease; /* Suaviza el cambio de color */
+    transition: color 0.3s ease;
 }
 
 .barralateral a::after {
-    content: ''; /* Pseudo-elemento vacío para el subrayado */
+    content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0; /* Inicia invisible */
-    height: 2px; /* Grosor del subrayado */
-    background-color: #fff; /* Color del subrayado */
-    transition: width 0.3s ease; /* Animación suave */
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
 }
 
 .barralateral a:hover {
-    color: #f1f1f1; /* Cambia el color del texto al pasar */
+    color: #f1f1f1;
 }
 
 .barralateral a:hover::after {
-    width: 100%; /* Se expande completamente en hover */
+    width: 100%;
 }
 
 .barralateral .close-btn {
@@ -87,12 +91,12 @@ body{
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 1100; /* Ensure it's above the barralateral */
+    z-index: 1001;
     transition: 0.3s;
 }
 
 .hamburger-btn:hover {
-    animation: shake 0.5s ease-in-out; /* Aplica la animación */
+    animation: shake 0.5s ease-in-out;
 }
 
 /* Animación de "temblor" */
@@ -101,23 +105,23 @@ body{
         transform: translateX(0);
     }
     25% {
-        transform: translateX(-3px); /* Desplaza hacia la izquierda */
+        transform: translateX(-3px);
     }
     50% {
-        transform: translateX(3px); /* Desplaza hacia la derecha */
+        transform: translateX(3px);
     }
     75% {
-        transform: translateX(-3px); /* Vuelve hacia la izquierda */
+        transform: translateX(-3px);
     }
     100% {
-        transform: translateX(0); /* Regresa a la posición original */
+        transform: translateX(0);
     }
 }
 
 
   /* Active barralateral state */
 .barralateral.active {
-    width: 250px; /* Width of the open barralateral */
+    width: 250px;
 }
 
   /* Content remains unaffected */
@@ -214,7 +218,7 @@ body{
     align-items: center;
     cursor: pointer;
     border-radius: 10px;
-    transition: background-color 0.2s ease-in-out; /* Agregar transición */
+    transition: background-color 0.2s ease-in-out;
     padding-top: 0.5%;
 }
 
@@ -275,10 +279,10 @@ body{
     color: #fff;
     border: none;
     cursor: pointer;
-    position: absolute; /* Posiciona el botón relativo al contenedor */
-    bottom: 10px; /* Espaciado desde el borde inferior */
-    right: 20px; /* Espaciado desde el borde derecho */
-    z-index: 10; /* Asegura que esté sobre otros elementos */
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    z-index: 10;
     font-size: 1em;
     font-weight: bold;
 }
@@ -296,8 +300,15 @@ body{
 .tarjetas .pronosticodias .lineapronosticodias {
     display: flex;
     align-items: center;
-    padding: 2px;
     width: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out;
+    padding: 5px;
+}
+
+.tarjetas .pronosticodias .lineapronosticodias:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .tarjetas .pronosticodias .lineapronosticodias h3 {
@@ -398,21 +409,111 @@ body{
 
 /* Estilos para hacer el calendario más grande */
 .flatpickr-calendar {
-    width: 400px !important; /* Calendario más ancho */
-    font-size: 1.2em !important; /* Texto más grande */
+    width: 400px !important;
+    font-size: 1.2em !important;
 }
 
 .flatpickr-day {
-    height: 50px !important; /* Días más grandes */
+    height: 50px !important;
     line-height: 50px !important;
 }
 
 .flatpickr-time {
-    height: 50px !important; /* Selector de hora más grande */
+    height: 50px !important;
 }
 
 .flatpickr-hour, .flatpickr-minute {
     font-size: 1.2em !important;
 }
 
+/*Estilos para la seccion de crear notas*/
+.crearnota{
+    width: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2%;
+    padding-bottom: 1%;
+    color: #4d4d4d;
+    display: none;
+    position: fixed;
+    top: 8%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+}
 
+.titulonota{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.titulonota input{
+    font-size: 2em;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: #4d4d4d;
+    min-width: 0;
+    flex: 1;
+}
+.titulonota .calendario-input{
+    font-size: 1.5em;
+    color: #4d4d4d;
+    width: auto;
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.contenidonota{
+    margin-top: 2%;
+    height: 400px;
+}
+.contenidonota textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    resize: none;
+    
+}
+
+.botonesnota{
+    margin-top: 2%;
+}
+.botonesnota button{
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 1%;
+    background-color: none;
+    color: #4d4d4d;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.botonesnota button:hover{
+    background-color: #2AA5FF;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.botonesnota-inferior{
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+}
