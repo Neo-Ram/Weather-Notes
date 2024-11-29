@@ -26,17 +26,23 @@ async function obtenerClima() {
 
         const data = await response.json();
 
-        // Mostrar la información en el frontend
-        document.getElementById('ciudadNombre').textContent = data.ciudad;
-        document.getElementById('temperatura').textContent = `${data.temperatura.toFixed(2)}°C`; // Redondear a 2 decimales
-         // Traducir la descripción
-         const descripcionTraducida = traducciones[data.descripcion] || data.descripcion;
-         document.getElementById('descripcion').textContent = descripcionTraducida;
-        //document.getElementById('descripcion').textContent = data.descripcion;
-        document.getElementById('tempMinimaMaxima').textContent = `Min: ${data.temp_minima.toFixed(2)}°C, Max: ${data.temp_maxima.toFixed(2)}°C`;
-        //document.getElementById('sensacionTermica').textContent = `${data.sensacion_termica.toFixed(2)}°C`;
-        document.getElementById('humedadValue').textContent = data.humedad;
-        document.getElementById('velocidadVientoValue').textContent = data.velocidad_viento;
+        // Verifica que los elementos existan antes de modificarlos
+        const ciudadNombre = document.getElementById('ciudadNombre');
+        const temperatura = document.getElementById('temperatura');
+        const descripcion = document.getElementById('descripcion');
+        const tempMinimaMaxima = document.getElementById('tempMinimaMaxima');
+        const humedadValue = document.getElementById('humedadValue');
+
+        if (ciudadNombre && temperatura && descripcion && tempMinimaMaxima && humedadValue) {
+            ciudadNombre.textContent = data.ciudad;
+            temperatura.textContent = `${data.temperatura.toFixed(2)}°C`; // Redondear a 2 decimales
+            const descripcionTraducida = traducciones[data.descripcion] || data.descripcion;
+            descripcion.textContent = descripcionTraducida;
+            tempMinimaMaxima.textContent = `Min: ${data.temp_minima.toFixed(2)}°C, Max: ${data.temp_maxima.toFixed(2)}°C`;
+            humedadValue.textContent = data.humedad;
+        } else {
+            console.error('Uno o más elementos no se encontraron en el DOM.');
+        }
 
     } catch (error) {
         console.error('Error al obtener el clima:', error);

@@ -35,14 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mostrar/ocultar calendario al hacer clic en el botón
     btnCalendario.addEventListener('click', function() {
-        if (calendarioContainer.style.display === 'none') {
+        if (calendarioContainer.style.display === 'none' || calendarioContainer.style.display === '') {
             calendarioContainer.style.display = 'block';
             calendario.open();
         } else {
             cerrarCalendario();
         }
     });
-
-    // Cerrar al hacer clic en el calendario
-    calendario.addEventListener('close', cerrarCalendario);
 });
