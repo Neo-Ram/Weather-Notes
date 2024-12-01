@@ -3,16 +3,17 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('buscarButton').addEventListener('click', obtenerClima);
 });
 const traducciones = {
-    "clear sky": "cielo despejado",
-    "few clouds": "pocas nubes",
-    "scattered clouds": "nubes dispersas",
-    "broken clouds": "nubes rotas",
-    "shower rain": "lluvia ligera",
-    "rain": "lluvia",
-    "thunderstorm": "tormenta eléctrica",
-    "snow": "nieve",
-    "mist": "neblina",
-    "moderate rain": "lluvia moderada",
+    "clear sky": "Cielo despejado",
+    "few clouds": "Pocas nubes",
+    "scattered clouds": "Nubes dispersas",
+    "broken clouds": "Nubes rotas",
+    "shower rain": "Lluvia ligera",
+    "rain": "Lluvia",
+    "thunderstorm": "Tormenta eléctrica",
+    "snow": "Nieve",
+    "mist": "Neblina",
+    "moderate rain": "Lluvia moderada",
+    "overcast clouds": "Nubes cubiertas",
     // Agrega más traducciones según sea necesario
 };
 async function obtenerClima() {
@@ -32,6 +33,11 @@ async function obtenerClima() {
         const descripcion = document.getElementById('descripcion');
         const tempMinimaMaxima = document.getElementById('tempMinimaMaxima');
         const humedadValue = document.getElementById('humedadValue');
+        const velocidadViento = document.getElementById('velocidadViento');
+        const puntoRocio = document.getElementById('puntoRocio');
+        const presionAtmosferica = document.getElementById('presionAtmosferica');
+        const indiceUV = document.getElementById('indiceUV');
+        const visibilidad = document.getElementById('visibilidad');
 
         if (ciudadNombre && temperatura && descripcion && tempMinimaMaxima && humedadValue) {
             ciudadNombre.textContent = data.ciudad;
@@ -39,7 +45,14 @@ async function obtenerClima() {
             const descripcionTraducida = traducciones[data.descripcion] || data.descripcion;
             descripcion.textContent = descripcionTraducida;
             tempMinimaMaxima.textContent = `Min: ${data.temp_minima.toFixed(2)}°C, Max: ${data.temp_maxima.toFixed(2)}°C`;
-            humedadValue.textContent = data.humedad;
+            humedadValue.textContent = `${data.humedad}%`;
+
+            // Nuevos parámetros del clima
+            if (velocidadViento) velocidadViento.textContent = `${data.velocidad_viento} km/h`;
+            if (puntoRocio) puntoRocio.textContent = `${data.punto_rocio}°C`;
+            if (presionAtmosferica) presionAtmosferica.textContent = `${data.presion} hPa`;
+            if (indiceUV) indiceUV.textContent = data.indice_uv;
+            if (visibilidad) visibilidad.textContent = `${(data.visibilidad / 1000).toFixed(1)} km`;
         } else {
             console.error('Uno o más elementos no se encontraron en el DOM.');
         }

@@ -104,6 +104,7 @@ async def registrar(request: RegisterRequest):
 async def obtener_clima(ciudad: str):
     try:
         async with httpx.AsyncClient() as client:
+            # Obtener datos básicos del clima
             response = await client.get(
                 f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={API_KEY}&units=metric"
             )
@@ -112,17 +113,42 @@ async def obtener_clima(ciudad: str):
                 raise HTTPException(status_code=response.status_code, detail=response.json())
 
             data = response.json()
+            
+            # Obtener coordenadas
+            lat = data['coord']['lat']
+            lon = data['coord']['lon']
 
-            # Extraer la información deseada, incluyendo el nombre de la ciudad
+            
+           # Llamar a la One Call API para obtener el índice UV
+            uv_response = await client.get(
+                f"https://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API_KEY}"
+            )
+            
+            if uv_response.status_code != 200:
+                raise HTTPException(status_code=uv_response.status_code, detail=uv_response.json())
+            
+            uv_data = uv_response.json()
+
+            # Acceder al índice UV desde 'value' en lugar de 'current'
+            indice_uv = uv_data['value']
+            # Calcular el punto de rocío
+            temperatura = data['main']['temp']
+            humedad = data['main']['humidity']
+            punto_rocio = round(temperatura - (100 - humedad) / 5)
+
+            # Extraer la información deseada
             clima_info = {
-                "ciudad": data['name'],  # Añadir el nombre de la ciudad
-                "temperatura": data['main']['temp'],
+                "ciudad": data['name'],
+                "temperatura": round(data['main']['temp']),
                 "descripcion": data['weather'][0]['description'],
-                "temp_maxima": data['main']['temp_max'],
-                "temp_minima": data['main']['temp_min'],
-                "sensacion_termica": data['main']['feels_like'],
+                "temp_maxima": round(data['main']['temp_max']),
+                "temp_minima": round(data['main']['temp_min']),
                 "humedad": data['main']['humidity'],
-                "velocidad_viento": data['wind']['speed']
+                "velocidad_viento": data['wind']['speed'],
+                "presion": data['main']['pressure'],
+                "visibilidad": data.get('visibility', 0),
+                "punto_rocio": punto_rocio,
+                "indice_uv": indice_uv
             }
             return clima_info
 
