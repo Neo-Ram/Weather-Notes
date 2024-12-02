@@ -1,6 +1,42 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
 
+function mostrarAlertaemailusado(mensaje) {
+    const alertContainer = document.getElementById('customAlert4');
+    const alertMessage = document.getElementById('emailusadoMessage');
+    alertMessage.textContent = mensaje;
+    
+    alertContainer.style.display = 'block';
+    
+    // Ocultar el alert después de 3 segundos
+    setTimeout(() => {
+        alertContainer.style.display = 'none';
+    }, 3000);
+}
+function mostrarAlertapasswordincorrecta(mensaje) {
+    const alertContainer = document.getElementById('customAlert5');
+    const alertMessage = document.getElementById('passwordincorrectaMessage');
+    alertMessage.textContent = mensaje;
+    
+    alertContainer.style.display = 'block';
+    
+    // Ocultar el alert después de 3 segundos
+    setTimeout(() => {
+        alertContainer.style.display = 'none';
+    }, 3000);
+}
+function mostrarAlertausuarioregistrado(mensaje) {
+    const alertContainer = document.getElementById('customAlert6');
+    const alertMessage = document.getElementById('alertusuarioregistradoMessage');
+    alertMessage.textContent = mensaje;
+    
+    alertContainer.style.display = 'block';
+    
+    // Ocultar el alert después de 3 segundos
+    setTimeout(() => {
+        alertContainer.style.display = 'none';
+    }, 3000);
+}
 //Configuracion Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBM3i56HQLo8_xuzhjPn186dMSZ43ESrOQ",
@@ -27,7 +63,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
     // Verificar si las contraseñas coinciden
     if (contraseña !== confirmContraseña) {
-        alert("Las contraseñas no coinciden");
+        mostrarAlertapasswordincorrecta("Las contraseñas no coinciden");
         return;
     }
 
@@ -52,7 +88,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     //     alert("Error: " + result.detail); // Mostrar error si no fue exitoso
     // }
     if (response.ok) {
-        alert("Usuario registrado exitosamente");
+        mostrarAlertausuarioregistrado("Usuario registrado exitosamente");
 
         try {
             // Iniciar sesión automáticamente en Firebase Auth (para poder enviar el correo de verificación)
@@ -62,12 +98,17 @@ document.getElementById('registerForm').addEventListener('submit', async functio
             // Enviar correo de verificación
             await sendEmailVerification(user);
             alert("Correo de verificación enviado. Por favor revisa tu bandeja de entrada.");
-        } catch (error) {
-            alert("Error: " + error.message);
+        } catch (firebaseError) {
+            console.log('Error de Firebase:', firebaseError.code); // Para debugging
+            
+            if (firebaseError.code === 'auth/email-already-in-use') {
+                mostrarAlertaemailusado("Este correo electrónico ya está registrado");
+            } else {
+                mostrarAlertaemailusado(firebaseError.message);
+            }
         }
-
     } else {
-        alert("Error: " + result.detail);
+        mostrarAlertaemailusado(result.detail);
     }
 
 });
