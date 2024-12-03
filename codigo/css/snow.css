@@ -1,0 +1,61 @@
+.containernieve{
+    width: 100%;
+    height: 100vh;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    pointer-events: none; /* Permite interactuar con elementos debajo */
+    z-index: 1;
+    display: none;
+}
+
+.snow{
+    background-image: url(../assets/css/snowball.png);
+    background-repeat: repeat;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    filter: blur(1.5px);
+    opacity: 0.7;
+}
+.little{
+    background-size: 150px 135px;
+    background-position: 0px -100px;
+    animation: snow1 14s infinite linear;
+}
+.normal{
+    animation: snow2 12s linear infinite;
+}
+.big{
+    background-size: 600px 540px;
+    background-position: 0px 90px;
+    animation: snow3 10s linear infinite;
+}
+.giant{
+    background-size: 900px 810px;
+    background-position: 150px 100px;
+    animation: snow4 8s linear infinite;
+}
+@keyframes snow1 {
+    0%{ background-position: 0px -100px;}
+    100%{ background-position: 150px 35px;}
+    
+}
+@keyframes snow2 {
+    0%{ background-position: 0px 0px;}
+    100%{ background-position: 300px 270px;}
+    
+}
+@keyframes snow3 {
+    0%{ background-position: 0px 90px;}
+    100%{ background-position: 600px 630px;}
+    
+}
+@keyframes snow4 {
+    0%{ background-position:150px 100px;}
+    100%{ background-position: 1050px 910px;}
+    
+}

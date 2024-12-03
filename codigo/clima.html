@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Notes</title>
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/snow.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
+    <!--Seccion clima osea nieve-->
+    <div class="containernieve">
+        <div class="snow little"></div>
+        <div class="snow normal"></div>
+        <div class="snow big"></div>
+        <div class="snow giant"></div>
+    </div>
+
+
+
+    <!--Seccion barra lateral-->
     <div class="barralateral">
         <a href="#" class="close-btn" onclick="toggleBarraLateral()">×</a>
         <a href="#section1">Sección 1</a>
@@ -251,7 +263,7 @@
                 <button>Cancelar</button>
             </div>
         </div>
-
+        
     </section>
     <script src="javascript/busquedaclima.js"></script>
     <script src="javascript/barradesplegabe.js"></script>
@@ -259,5 +271,6 @@
     <script src="javascript/animacion.js"></script>
     <script src="javascript/crearnota.js"></script>
     <script src="javascript/pronosticosemanal.js"></script>
+    <script src="javascript/pronosticohoras.js"></script>
 </body>
 </html>

@@ -219,3 +219,20 @@ async def obtener_pronostico(ciudad: str):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+#================================================================================================
+@app.get("/pronostico_horario/{ciudad}")
+async def obtener_pronostico_horario(ciudad: str):
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"https://api.openweathermap.org/data/2.5/forecast?q={ciudad}&appid={API_KEY}&units=metric&lang=es"
+            )
+
+            if response.status_code != 200:
+                raise HTTPException(status_code=response.status_code, detail=response.json())
+
+            return response.json()
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

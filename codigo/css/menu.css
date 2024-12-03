@@ -517,3 +517,8 @@ body{
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1999;
 }
+
+/*Omar chambeando, todo lo que se vea aqui es de Omar*/
+.notita {
+    visibility: hidden;
+}
