@@ -37,6 +37,18 @@ function mostrarAlertausuarioregistrado(mensaje) {
         alertContainer.style.display = 'none';
     }, 3000);
 }
+// Para mostrar el popup
+function showPopup(message) {
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('customPopup').classList.add('show');
+}
+
+// Para cerrar el popup
+document.querySelector('.close-popup').addEventListener('click', function() {
+    document.getElementById('customPopup').classList.remove('show');
+});
+
+
 //Configuracion Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBM3i56HQLo8_xuzhjPn186dMSZ43ESrOQ",
@@ -97,9 +109,9 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     
             // Enviar correo de verificación
             await sendEmailVerification(user);
-            alert("Correo de verificación enviado. Por favor revisa tu bandeja de entrada.");
+            showPopup("Correo de verificación enviado. Por favor revisa tu bandeja de entrada.");
         } catch (firebaseError) {
-            console.log('Error de Firebase:', firebaseError.code); // Para debugging
+            console.log('Error de Firebase:', firebaseError.code); 
             
             if (firebaseError.code === 'auth/email-already-in-use') {
                 mostrarAlertaemailusado("Este correo electrónico ya está registrado");
