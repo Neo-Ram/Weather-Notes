@@ -5,7 +5,7 @@ from firebase_admin import credentials, firestore, initialize_app, auth
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
-
+from datetime import datetime
 # Crear instancia de FastAPI
 app = FastAPI()
 
@@ -151,6 +151,71 @@ async def obtener_clima(ciudad: str):
                 "indice_uv": indice_uv
             }
             return clima_info
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+#================================================================================================
+@app.get("/pronostico/{ciudad}")
+async def obtener_pronostico(ciudad: str):
+    try:
+        async with httpx.AsyncClient() as client:
+            # Primero obtener las coordenadas de la ciudad
+            response = await client.get(
+                f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={API_KEY}&units=metric"
+            )
+
+            if response.status_code != 200:
+                raise HTTPException(status_code=response.status_code, detail=response.json())
+
+            data = response.json()
+            lat = data['coord']['lat']
+            lon = data['coord']['lon']
+
+            # Obtener pronóstico de 5 días
+            forecast_response = await client.get(
+                f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}&units=metric&lang=es"
+            )
+
+            if forecast_response.status_code != 200:
+                raise HTTPException(status_code=forecast_response.status_code, detail=forecast_response.json())
+
+            forecast_data = forecast_response.json()
+
+            # Procesar los datos para obtener un pronóstico por día
+            daily_forecasts = {}
+            
+            for item in forecast_data['list']:
+                # Convertir timestamp a fecha
+                fecha = datetime.fromtimestamp(item['dt'])
+                fecha_str = fecha.strftime('%Y-%m-%d')
+
+                if fecha_str not in daily_forecasts:
+                    daily_forecasts[fecha_str] = {
+                        'fecha': fecha.strftime('%A, %d %B'),  # Formato: Lunes, 01 Enero
+                        'temp_min': item['main']['temp_min'],
+                        'temp_max': item['main']['temp_max'],
+                        'humedad': item['main']['humidity'],
+                        'descripcion': item['weather'][0]['description'],
+                        'icono': item['weather'][0]['icon']
+                    }
+                else:
+                    # Actualizar temperaturas máximas y mínimas
+                    daily_forecasts[fecha_str]['temp_min'] = min(
+                        daily_forecasts[fecha_str]['temp_min'], 
+                        item['main']['temp_min']
+                    )
+                    daily_forecasts[fecha_str]['temp_max'] = max(
+                        daily_forecasts[fecha_str]['temp_max'], 
+                        item['main']['temp_max']
+                    )
+
+            # Convertir el diccionario a una lista
+            pronostico = list(daily_forecasts.values())
+
+            return {
+                "ciudad": ciudad,
+                "pronostico": pronostico
+            }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
