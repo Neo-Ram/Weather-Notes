@@ -16,6 +16,7 @@ const traducciones = {
     "overcast clouds": "Nubes cubiertas",
     "heavy rain": "Lluvia intensa",
     "heavy snow": "Nieve intensa",
+    "heavy intensity rain": "Lluvia intensa",
     // Agrega más traducciones según sea necesario
 };
 const iconosPorDescripcion = {
@@ -31,7 +32,8 @@ const iconosPorDescripcion = {
     "Lluvia moderada": "assets/Icons/rain.png",
     "Nubes cubiertas": "assets/Icons/clouds.png",
     "Lluvia intensa": "assets/Icons/rain.png",
-    "Nieve intensa": "assets/Icons/snow.png"
+    "Nieve intensa": "assets/Icons/snow.png",
+    "Lluvia intensa": "assets/Icons/rain.png"
 };
 // En tu función obtenerClima, después de recibir los datos:
 function mostrarEfectoNieve(descripcion, temperatura) {
