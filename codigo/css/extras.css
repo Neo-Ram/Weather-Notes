@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+::selection{
+    background-color: #fff;
+    color: #2AA5FF;
+}
+
+body{
+    background: linear-gradient(to bottom, #2AA5FF, #76c6ff);
+   overflow: hidden;
+   position: relative;
+   height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.bloquenotas{
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.bloquenotas h1{
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.bloquenotas hr{
+    border: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+.xnota {
+    color: #fff;
+    display: grid;
+    grid-template-columns: 2fr 3fr 120px 100px;
+    gap: 20px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+}
+
+.xnota h2 {
+    font-size: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.xnota p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.xnota .fecha {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.xnota button {
+    background: none;
+    color: #fff;
+    border: solid 1px #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 100px;
+    justify-self: end;
+}
+
+.xnota button:hover{
+    background-color: #fff;
+    color: #2AA5FF;
+    cursor: pointer;
+}
+
+/* Estilos base para las nubes */
+.nube {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 100px;
+    height: 40px;
+    filter: blur(4px);
+    left: -200px;
+}
+
+.nube::before,
+.nube::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.nube::before {
+    width: 50px;
+    height: 50px;
+    top: -20px;
+    left: 10px;
+}
+
+.nube::after {
+    width: 60px;
+    height: 60px;
+    top: -25px;
+    left: 40px;
+}
+
+@keyframes moverNube {
+    from {
+        transform: translateX(-200px);
+        opacity: 0.8;
+    }
+    to {
+        transform: translateX(calc(100vw + 200px));
+        opacity: 0.8;
+    }
+}
+
+/* Diferentes tamaños y velocidades de nubes */
+.nube1 {
+    width: 100px;
+    top: 10%;
+    animation: moverNube 20s linear infinite;
+}
+
+.nube2 {
+    width: 160px;
+    top: 25%;
+    animation: moverNube 28s linear infinite;
+    animation-delay: 3s;
+}
+
+.nube3 {
+    width: 120px;
+    top: 40%;
+    animation: moverNube 22s linear infinite;
+    animation-delay: 7s;
+}
+
+.nube4 {
+    width: 180px;
+    top: 55%;
+    animation: moverNube 30s linear infinite;
+    animation-delay: 2s;
+}
+
+.nube5 {
+    width: 140px;
+    top: 70%;
+    animation: moverNube 25s linear infinite;
+    animation-delay: 8s;
+}
+
+.nube6 {
+    width: 90px;
+    top: 85%;
+    animation: moverNube 18s linear infinite;
+    animation-delay: 5s;
+}
+
+.nube7 {
+    width: 130px;
+    top: 15%;
+    animation: moverNube 24s linear infinite;
+    animation-delay: 12s;
+}
+
+.nube8 {
+    width: 150px;
+    top: 65%;
+    animation: moverNube 26s linear infinite;
+    animation-delay: 15s;
+}
+
+.crearnota {
+    width: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 2%;
+    padding-bottom: 1%;
+    color: #fff;
+    position: fixed;
+    left: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    z-index: 2000;
+}
+
+.titulonota {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.titulonota input {
+    background: transparent;
+    font-size: 2em;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: #fff;
+    min-width: 0;
+    flex: 1;
+}
+.titulonota input::placeholder{
+    color: #fff;
+}
+
+.titulonota .calendario-input {
+    background: transparent;
+    font-size: 1.5em;
+    color: #fff;
+    width: auto;
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.contenidonota {
+    margin-top: 2%;
+    height: 400px;
+}
+
+.contenidonota textarea {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    resize: none;
+    color: #fff;
+}
+.contenidonota textarea::placeholder{
+    color: #fff;
+}
+
+.botonesnota {
+    margin-top: 2%;
+}
+
+.botonesnota button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    margin-bottom: 1%;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.botonesnota button:hover {
+    background: rgba(42, 165, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.botonesnota-inferior {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1999;
+}

@@ -3,6 +3,7 @@ from firebase_admin import credentials, firestore
 
 # Ruta al archivo de clave privada descargada
 cred = credentials.Certificate('C:/Users/Omarius/Downloads/weathernotes-8e4e9-firebase-adminsdk-9x4cf-634d9208d1.json')
+#cred = credentials.Certificate('C:/Users/ramon/Desktop/weathernotes-8e4e9-firebase-adminsdk-9x4cf-634d9208d1.json')
 
 # Inicializar la aplicación de Firebase
 firebase_admin.initialize_app(cred)

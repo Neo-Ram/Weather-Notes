@@ -2,16 +2,16 @@
 const iconMapping = {
     '01d': 'assets/Icons/Sol.png',      // día despejado
     '01n': 'assets/Icons/night.png',    // noche despejada
-    '02d': 'assets/Icons/clouds.png',   // pocas nubes día
-    '02n': 'assets/Icons/clouds.png',   // pocas nubes noche
+    '02d': 'assets/Icons/sun.png',   // pocas nubes día
+    '02n': 'assets/Icons/cloudy-night.png',   // pocas nubes noche
     '03d': 'assets/Icons/clouds.png',   // nubes dispersas
     '03n': 'assets/Icons/clouds.png',
-    '04d': 'assets/Icons/clouds.png',   // muy nublado
-    '04n': 'assets/Icons/clouds.png',
+    '04d': 'assets/Icons/cloud.png',   // muy nublado
+    '04n': 'assets/Icons/cloud.png',
     '09d': 'assets/Icons/rain.png',     // lluvia ligera
     '09n': 'assets/Icons/rain.png',
-    '10d': 'assets/Icons/rain.png',     // lluvia
-    '10n': 'assets/Icons/rain.png',
+    '10d': 'assets/Icons/rain2.png',     // lluvia
+    '10n': 'assets/Icons/rain2.png',
     '11d': 'assets/Icons/storm.png',    // tormenta
     '11n': 'assets/Icons/storm.png',
     // Añade más mappings según tus íconos disponibles

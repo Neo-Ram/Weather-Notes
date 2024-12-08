@@ -5,24 +5,24 @@ const iconosPersonalizados = {
     '01n': 'assets/Icons/night.png',
     
     // Pocas nubes
-    '02d': 'assets/Icons/clouds.png',
-    '02n': 'assets/Icons/clouds.png',
+    '02d': 'assets/Icons/sun.png',
+    '02n': 'assets/Icons/cloudy-night.png',
     
     // Nubes dispersas
     '03d': 'assets/Icons/clouds.png',
     '03n': 'assets/Icons/clouds.png',
     
     // Muy nublado
-    '04d': 'assets/Icons/clouds.png',
-    '04n': 'assets/Icons/clouds.png',
+    '04d': 'assets/Icons/cloud.png',
+    '04n': 'assets/Icons/cloud.png',
     
     // Lluvia ligera
     '09d': 'assets/Icons/rain.png',
     '09n': 'assets/Icons/rain.png',
     
     // Lluvia
-    '10d': 'assets/Icons/rain.png',
-    '10n': 'assets/Icons/rain.png',
+    '10d': 'assets/Icons/rain2.png',
+    '10n': 'assets/Icons/rain2.png',
     
     // Tormenta
     '11d': 'assets/Icons/storm.png',

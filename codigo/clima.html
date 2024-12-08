@@ -22,10 +22,13 @@
 
     <!--Seccion barra lateral-->
     <div class="barralateral">
+        <h1>Usuario</h1>
+        <hr>
         <a href="#" class="close-btn" onclick="toggleBarraLateral()">×</a>
-        <a href="#section1">Sección 1</a>
-        <a href="#section2">Sección 2</a>
-        <a href="#section3">Sección 3</a>
+        <button class="crea">crear nota</button>
+        <a href="todaslasnotas.html">Todas las notas</a>
+        <a href="papelera.html">Papelera</a>
+        <button class="cerrarsesion">Cerrar sesion</button>
     </div>
     
     <button class="hamburger-btn" onclick="toggleBarraLateral()">☰</button>
@@ -34,7 +37,12 @@
         <div class="content">
         </div>
         <div class="iconoclima">
-            <img src="assets/Icons/Sol.png" alt="sol">
+            <img src="assets/Icons/Sol.png" alt="sol"> <!--se tomara de info clima cuando el h3 con id descripcion diga Dia/Soleado-->
+            <img src="assets/Icons/clouds.png" alt="nube"> <!--se tomara de info clima cuando el h3 con id descripcion diga Dia/Nublado o Noche/Nublado -->
+            <img src="assets/Icons/rain.png" alt="lluvia"> <!--se tomara de info clima cuando el h3 con id descripcion diga Dia/Lluvia o Noche/Lluvia-->
+            <img src="assets/Icons/snow.png" alt="nieve"> <!--se tomara de info clima cuando el h3 con id descripcion diga Dia/Nieve o Noche/Nieve-->
+            <img src="assets/Icons/night.png" alt="noche"> <!--se tomara de info clima cuando el h3 con id descripcion diga Noche/Despejado-->
+            <img src="assets/Icons/storm.png" alt="tormenta"> <!--se tomara de info clima cuando el h3 con id descripcion diga Dia/Tormenta o Noche/Tormenta-->
 
         </div>
 
@@ -49,7 +57,7 @@
         <div class="infoclima" id="resultado">
             <h2 id="ciudadNombre">Ciudad</h2>
             <h1 id="temperatura">Grados</h1>
-            <h3 id="descripcion">soleado/nublado etc</h3>
+            <h3 id="descripcion">Dia/Nieve</h3>
             <h3 id="tempMinimaMaxima">Min: TempMinima°/Max: TempMaxima°</h3>
             <h3>Humedad: <span id="humedadValue">X</span></h3>
 
@@ -272,5 +280,6 @@
     <script src="javascript/crearnota.js"></script>
     <script src="javascript/pronosticosemanal.js"></script>
     <script src="javascript/pronosticohoras.js"></script>
+    <script src="javascript/climadinamico.js"></script>
 </body>
 </html>

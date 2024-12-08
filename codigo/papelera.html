@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/papelera.css">
+    <title>Papelera</title>
+</head>
+<body>
+    <div class="nube nube1"></div>
+    <div class="nube nube2"></div>
+    <div class="nube nube3"></div>
+    <div class="nube nube4"></div>
+    <div class="nube nube5"></div>
+    <div class="nube nube6"></div>
+    <div class="nube nube7"></div>
+    <div class="nube nube8"></div>
+    
+    <div class="bloquenotas">
+        <h1>Papelera</h1>
+        <hr>
+        <div class="xnota">
+            <h2>Titulo de la nota</h2>
+            <p>Contenido de la nota que puede ser muy largo pero se cortará automáticamente...</p>
+            <p class="fecha">12/03/2024</p>
+            <button>Opciones</button>
+        </div>
+        <div class="xnota">
+            <h2>Titulo de la nota</h2>
+            <p>Contenido de la nota que puede ser muy largo pero se cortará automáticamente...</p>
+            <p class="fecha">12/03/2024</p>
+            <button>Opciones</button>
+        </div>
+    </div>
+
+    <section class="crearnota">
+        <div class="titulonota">
+            <input type="text" placeholder="Titulo de la nota">
+            <input type="date" class="calendario-input" id="fechaNota">
+        </div>
+        <hr>
+        <div class="contenidonota">
+            <textarea placeholder="Escribe tu nota aquí"></textarea>
+        </div>
+        <div class="botonesnota">
+            <button>ubicacion</button>
+            <h3>clima de la ubicacion</h3>
+            <div class="botonesnota-inferior">
+                <button>Guardar</button>
+                <button>Cancelar</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="javascript/crearnotaclon.js"></script>
+</body>
+</html>
