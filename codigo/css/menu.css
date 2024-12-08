@@ -3,6 +3,8 @@
 section {
     transition: all 0.5s ease-in-out;
     will-change: transform, opacity;
+    position: relative;
+    z-index: 2;
 }
 
 *{
@@ -605,4 +607,186 @@ body{
 /*Omar chambeando, todo lo que se vea aqui es de Omar*/
 .notita {
     visibility: hidden;
+}
+
+.nube-flotante {
+    position: fixed;
+    width: 150px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    filter: blur(5px);
+    z-index: 1;
+}
+
+.nube-flotante::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+.nube-flotante::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+.gota-lluvia {
+    position: fixed;
+    width: 1px;
+    height: 15px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.7));
+    z-index: 9999;
+    animation: caida-lluvia linear forwards;
+    pointer-events: none;
+    top: 0;
+}
+
+@keyframes caida-lluvia {
+    0% {
+        transform: translateY(0) skewX(-15deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) skewX(-15deg);
+        opacity: 0;
+    }
+}
+
+.rayo {
+    position: fixed;
+    top: 0;
+    width: 2px;
+    height: 100vh;
+    background: white;
+    z-index: 9998;
+    animation: flash 0.15s linear;
+    opacity: 0;
+    filter: blur(1px);
+    box-shadow: 
+        0 0 50px #fff,
+        0 0 100px #fff,
+        0 0 150px #fff,
+        0 0 200px #fff;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    20% {
+        transform: scaleX(30);
+        filter: brightness(2);
+    }
+    25% {
+        opacity: 1;
+        transform: scaleX(1);
+        filter: brightness(1.5);
+    }
+    30% {
+        opacity: 0.8;
+        transform: scaleX(20);
+    }
+    35% {
+        opacity: 0.6;
+        transform: scaleX(1);
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.copo-nieve {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(1px);
+    animation: 
+        caida-nieve 10s linear forwards,
+        ondulacion 3s ease-in-out infinite;
+}
+
+@keyframes caida-nieve {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes ondulacion {
+    0% {
+        margin-left: -20px;
+    }
+    100% {
+        margin-left: 20px;
+    }
+}
+
+.estrella {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 
+        0 0 4px #fff,
+        0 0 8px #fff;
+    animation: parpadeo ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+}
+
+/* Crear variaciones de tamaño para las estrellas */
+.estrella:nth-child(3n) {
+    width: 3px;
+    height: 3px;
+}
+
+.estrella:nth-child(5n) {
+    width: 1px;
+    height: 1px;
 }
