@@ -599,8 +599,6 @@ body{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     z-index: 1999;
 }
 
