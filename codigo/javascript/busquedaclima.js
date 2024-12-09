@@ -16,7 +16,9 @@ const traducciones = {
     "overcast clouds": "Nubes cubiertas", //YA
     "heavy rain": "Lluvia intensa", //YA
     "heavy snow": "Nieve intensa", //YA
-    "heavy intensity rain": "Lluvia intensa", //YA
+    "heavy intensity rain": "Lluvia intensa",
+    "light intensity shower rain": "Lluvia ligera",  //YA
+    "very heavy rain": "Lluvia intensa",
     // Agrega más traducciones según sea necesario
 };
 const iconosPorDescripcion = {
@@ -28,18 +30,13 @@ const iconosPorDescripcion = {
     "Lluvia": "assets/Icons/rain.png",
     "Tormenta eléctrica": "assets/Icons/storm.png",
     "Nieve": "assets/Icons/snow.png",
-    "Neblina": "assets/Icons/mist.png",
+    "Neblina": "assets/Icons/clouds.png",
     "Lluvia moderada": "assets/Icons/rain.png",
     "Nubes cubiertas": "assets/Icons/clouds.png",
     "Lluvia intensa": "assets/Icons/rain.png",
     "Nieve intensa": "assets/Icons/snow.png",
     "Lluvia intensa": "assets/Icons/rain.png"
 };
-// Función para determinar si es de día o de noche
-function esDeNoche() {
-    const hora = new Date().getHours();
-    return hora >= 19 || hora < 6;
-}
 
 
 async function obtenerClima() {

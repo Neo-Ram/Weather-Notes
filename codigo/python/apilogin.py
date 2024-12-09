@@ -119,7 +119,7 @@ async def obtener_clima(ciudad: str):
             lon = data['coord']['lon']
 
             
-           # Llamar a la One Call API para obtener el índice UV
+            # Llamar a la One Call API para obtener el índice UV
             uv_response = await client.get(
                 f"https://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API_KEY}"
             )
@@ -236,3 +236,19 @@ async def obtener_pronostico_horario(ciudad: str):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+#================================================================================================
+#Obtener el usuario
+@app.get("/usuario-actual/{correo}")
+async def obtener_usuario_actual(correo: str):
+    try:
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo).stream()
+        
+        for user in query:
+            return {"username": user.to_dict()['username']}
+            
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+

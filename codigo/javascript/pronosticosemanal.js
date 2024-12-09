@@ -13,8 +13,8 @@ const iconosPersonalizados = {
     '03n': 'assets/Icons/clouds.png',
     
     // Muy nublado
-    '04d': 'assets/Icons/cloud.png',
-    '04n': 'assets/Icons/cloud.png',
+    '04d': 'assets/Icons/clouds.png',
+    '04n': 'assets/Icons/clouds.png',
     
     // Lluvia ligera
     '09d': 'assets/Icons/rain.png',
@@ -33,8 +33,8 @@ const iconosPersonalizados = {
     '13n': 'assets/Icons/snow.png',
     
     // Niebla
-    '50d': 'assets/Icons/mist.png',
-    '50n': 'assets/Icons/mist.png'
+    '50d': 'assets/Icons/clouds.png',
+    '50n': 'assets/Icons/clouds.png'
 };
 
 // Función para obtener y mostrar el pronóstico

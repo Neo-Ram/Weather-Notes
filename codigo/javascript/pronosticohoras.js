@@ -6,8 +6,8 @@ const iconMapping = {
     '02n': 'assets/Icons/cloudy-night.png',   // pocas nubes noche
     '03d': 'assets/Icons/clouds.png',   // nubes dispersas
     '03n': 'assets/Icons/clouds.png',
-    '04d': 'assets/Icons/cloud.png',   // muy nublado
-    '04n': 'assets/Icons/cloud.png',
+    '04d': 'assets/Icons/clouds.png',   // muy nublado
+    '04n': 'assets/Icons/clouds.png',
     '09d': 'assets/Icons/rain.png',     // lluvia ligera
     '09n': 'assets/Icons/rain.png',
     '10d': 'assets/Icons/rain2.png',     // lluvia

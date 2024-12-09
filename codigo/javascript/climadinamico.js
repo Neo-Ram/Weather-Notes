@@ -32,6 +32,12 @@ const configuracionesClima = {
             ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
             : 'linear-gradient(to bottom, #565656, #ffffff)'
     },
+    'Neblina': {
+        icono: 'nube',
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
+            : 'linear-gradient(to bottom, #565656, #ffffff)'
+    },
     //Lluvia
     'Lluvia ligera': {
         icono: 'lluvia',
