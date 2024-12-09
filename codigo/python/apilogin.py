@@ -335,3 +335,41 @@ async def obtener_notas_por_correo(correo: str):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+#================================================================================================
+#Eliminar nota
+@app.delete("/eliminarnota/{correo}/{note_id}")
+async def eliminar_nota_por_correo(correo: str, note_id: str):
+    try:
+        # Decodificar el correo si es necesario
+        correo_decodificado = correo.replace("%40", "@")
+        
+        # Obtener el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo_decodificado).stream()
+        
+        user_id = None
+        for user in query:
+            user_id = user.id
+            break
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Usuario no encontrado"
+            )
+        
+        # Eliminar la nota
+        note_ref = db.collection('usuarios').document(user_id).collection('notas').document(note_id)
+        note = note_ref.get()
+        
+        if not note.exists:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Nota no encontrada"
+            )
+        
+        note_ref.delete()
+        return {"message": "Nota eliminada exitosamente"}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
