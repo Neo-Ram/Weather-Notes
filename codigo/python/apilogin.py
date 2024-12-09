@@ -57,7 +57,7 @@ async def login(request: LoginRequest):
                 break
 
         if user_found:
-            return {"message": "Inicio de sesión exitoso"}
+            return {"message": "Inicio de sesión exitoso","correo": request.correo}
         else:
             raise HTTPException(status_code=401, detail="Credenciales incorrectas")
 

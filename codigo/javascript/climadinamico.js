@@ -75,6 +75,25 @@ function esHoraNocturna() {
     const hora = new Date().getHours();
     return hora >= 19 || hora < 6; // Es noche entre 7pm y 6am
 }
+//Funcion para obtener el usuario
+async function mostrarNombreUsuario() {
+    const correo = localStorage.getItem('correo');
+    if (correo) {
+        try {
+            const response = await fetch(`http://localhost:8000/usuario-actual/${correo}`);
+            if (response.ok) {
+                const data = await response.json();
+                // Actualizar el elemento que muestra el nombre de usuario
+                const elementoUsuario = document.getElementById('nombreUsuario');
+                if (elementoUsuario) {
+                    elementoUsuario.textContent = data.username;
+                }
+            }
+        } catch (error) {
+            console.error('Error al obtener nombre de usuario:', error);
+        }
+    }
+}
 
 function crearNube(esNublado = false) {
     const nube = document.createElement('div');
@@ -301,3 +320,19 @@ if (descripcionElemento) {
 
 // Ejecutar una vez al cargar la página
 document.addEventListener('DOMContentLoaded', actualizarIconoClima);
+// Llamar a la función cuando se carga la página
+//document.addEventListener('DOMContentLoaded', mostrarNombreUsuario);
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarNombreUsuario();  // La función que ya teníamos
+
+    // Agregar el evento de cerrar sesión
+    const btnCerrarSesion = document.getElementById('btnCerrarSesion');
+    if (btnCerrarSesion) {
+        btnCerrarSesion.addEventListener('click', function() {
+            // Limpiar el localStorage
+            localStorage.clear();
+            // Redireccionar al login
+            window.location.href = 'login.html';
+        });
+    }
+});

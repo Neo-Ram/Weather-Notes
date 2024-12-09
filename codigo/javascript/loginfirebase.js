@@ -60,6 +60,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         // Manejar la respuesta del backend
         if (response.ok) {
             const data = await response.json();
+            //Guardar el correo en el localStorage
+            localStorage.setItem('correo', data.correo);
+            
             console.log("Inicio correctamente");
             mostrarAlerta("Inicio de sesión exitoso");
             // Redirigir al usuario a otra página HTML
