@@ -1,45 +1,74 @@
 const configuracionesClima = {
-    'Dia/Soleado': {
-        icono: 'sol',
-        fondo: 'linear-gradient(to bottom, #2AA5FF, #76c6ff)'
+    //Dia/Soleado
+    'Cielo despejado': {
+        icono: esHoraNocturna() ? 'noche' : 'sol',
+        fondo: esHoraNocturna()
+        ? 'linear-gradient(to bottom, #000000, #005ab5)'  // noche
+        : 'linear-gradient(to bottom, #2AA5FF, #76c6ff)'  // dia
     },
-    'Dia/Nublado': {
+    //Nublado
+    //Dia/Nublado
+    'Pocas nubes': {
         icono: 'nube',
-        fondo: 'linear-gradient(to bottom, #565656, #ffffff)'
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'  // noche
+            : 'linear-gradient(to bottom, #565656, #ffffff)'  // día
     },
-    'Noche/Nublado': {
+    'Nubes dispersas': {
         icono: 'nube',
-        fondo: 'linear-gradient(to bottom, #002574, #6d6d6d)'
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
+            : 'linear-gradient(to bottom, #565656, #ffffff)'
     },
-    'Dia/Lluvia': {
+    'Nubes rotas': {
+        icono: 'nube',
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
+            : 'linear-gradient(to bottom, #565656, #ffffff)'
+    },
+    'Nubes cubiertas': {
+        icono: 'nube',
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
+            : 'linear-gradient(to bottom, #565656, #ffffff)'
+    },
+    //Lluvia
+    'Lluvia ligera': {
         icono: 'lluvia',
         fondo: 'linear-gradient(to bottom, #000000, #424242)'
     },
-    'Noche/Lluvia': {
+    'Lluvia': {
         icono: 'lluvia',
         fondo: 'linear-gradient(to bottom, #000000, #424242)'
     },
-    'Dia/Nieve': {
+    'Lluvia intensa': {
+        icono: 'lluvia',
+        fondo: 'linear-gradient(to bottom, #000000, #424242)'
+    },
+    'Lluvia moderada': {
+        icono: 'lluvia',
+        fondo: 'linear-gradient(to bottom, #000000, #424242)'
+    },
+    //Nieve
+    'Nieve': {
         icono: 'nieve',
         fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
     },
-    'Noche/Nieve': {
+    'Nieve intensa': {
         icono: 'nieve',
         fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
     },
-    'Noche/Despejado': {
-        icono: 'noche',
-        fondo: 'linear-gradient(to bottom, #000000, #005ab5)'
-    },
-    'Dia/Tormenta': {
+    //Tormenta
+    'Tormenta eléctrica': {
         icono: 'tormenta',
         fondo: 'linear-gradient(to bottom, #252759, #000000)'
     },
-    'Noche/Tormenta': {
-        icono: 'tormenta',
-        fondo: 'linear-gradient(to bottom, #000000, #252759)'
-    }
 };
+//Es la hora de nochear
+function esHoraNocturna() {
+    const hora = new Date().getHours();
+    return hora >= 19 || hora < 6; // Es noche entre 7pm y 6am
+}
 
 function crearNube(esNublado = false) {
     const nube = document.createElement('div');
@@ -227,15 +256,18 @@ function actualizarIconoClima() {
         body.style.backgroundRepeat = 'no-repeat';
 
         // Iniciar efectos según el clima
-        if (descripcion === 'Dia/Soleado') {
+        if (descripcion === 'Cielo despejado') {
             iniciarNubes(false);
-        } else if (descripcion === 'Dia/Nublado' || descripcion === 'Noche/Nublado') {
+            if(esHoraNocturna()){
+                iniciarEstrellas();
+            }
+        } else if (descripcion === 'Pocas nubes' || descripcion === 'Nubes dispersas' || descripcion === 'Nubes rotas' || descripcion === 'Neblina' || descripcion === 'Nubes cubiertas') {
             iniciarNubes(true);
-        } else if (descripcion === 'Dia/Lluvia' || descripcion === 'Noche/Lluvia') {
+        } else if (descripcion === 'Lluvia ligera' || descripcion === 'Lluvia' || descripcion === 'Lluvia intensa' || descripcion === 'Lluvia moderada') {
             iniciarLluvia();
-        } else if (descripcion === 'Dia/Tormenta' || descripcion === 'Noche/Tormenta') {
+        } else if (descripcion === 'Tormenta eléctrica') {
             iniciarTormenta();
-        } else if (descripcion === 'Dia/Nieve' || descripcion === 'Noche/Nieve') {
+        } else if (descripcion === 'Nieve' || descripcion === 'Nieve intensa') {
             iniciarNieve();
         } else if (descripcion === 'Noche/Despejado') {
             iniciarEstrellas();

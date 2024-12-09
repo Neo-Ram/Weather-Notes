@@ -3,20 +3,20 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('buscarButton').addEventListener('click', obtenerClima);
 });
 const traducciones = {
-    "clear sky": "Cielo despejado",
-    "few clouds": "Pocas nubes",
-    "scattered clouds": "Nubes dispersas",
-    "broken clouds": "Nubes rotas",
-    "shower rain": "Lluvia ligera",
-    "rain": "Lluvia",
-    "thunderstorm": "Tormenta eléctrica",
-    "snow": "Nieve",
-    "mist": "Neblina",
-    "moderate rain": "Lluvia moderada",
-    "overcast clouds": "Nubes cubiertas",
-    "heavy rain": "Lluvia intensa",
-    "heavy snow": "Nieve intensa",
-    "heavy intensity rain": "Lluvia intensa",
+    "clear sky": "Cielo despejado",//YA
+    "few clouds": "Pocas nubes", //YA
+    "scattered clouds": "Nubes dispersas", //YA
+    "broken clouds": "Nubes rotas", //YA
+    "shower rain": "Lluvia ligera", //YA
+    "rain": "Lluvia", //YA
+    "thunderstorm": "Tormenta eléctrica", //YA
+    "snow": "Nieve", //YA
+    "mist": "Neblina", //YA
+    "moderate rain": "Lluvia moderada", //YA
+    "overcast clouds": "Nubes cubiertas", //YA
+    "heavy rain": "Lluvia intensa", //YA
+    "heavy snow": "Nieve intensa", //YA
+    "heavy intensity rain": "Lluvia intensa", //YA
     // Agrega más traducciones según sea necesario
 };
 const iconosPorDescripcion = {
@@ -35,26 +35,12 @@ const iconosPorDescripcion = {
     "Nieve intensa": "assets/Icons/snow.png",
     "Lluvia intensa": "assets/Icons/rain.png"
 };
-// En tu función obtenerClima, después de recibir los datos:
-function mostrarEfectoNieve(descripcion, temperatura) {
-    const containerNieve = document.querySelector('.containernieve');
-    
-    // Condiciones para mostrar nieve
-    const condicionesNevadas = [
-        "Nieve",
-        "Nevada ligera",
-        "Nevada intensa",
-        "Aguanieve",
-        "snow"  // código en inglés por si acaso
-    ];
-    
-    // Mostrar nieve si hay condiciones nevadas o temperatura muy baja (por ejemplo, menor a 5°C)
-    if (condicionesNevadas.includes(descripcion) || temperatura < 5) {
-        containerNieve.style.display = 'block';
-    } else {
-        containerNieve.style.display = 'none';
-    }
+// Función para determinar si es de día o de noche
+function esDeNoche() {
+    const hora = new Date().getHours();
+    return hora >= 19 || hora < 6;
 }
+
 
 async function obtenerClima() {
     const ciudad = document.getElementById('ciudadInput').value; // Obtener la ciudad del input
@@ -66,6 +52,7 @@ async function obtenerClima() {
         }
 
         const data = await response.json();
+        
 
         // Verifica que los elementos existan antes de modificarlos
         const ciudadNombre = document.getElementById('ciudadNombre');
@@ -86,7 +73,7 @@ async function obtenerClima() {
             descripcion.textContent = descripcionTraducida;
 
             // Llamar a mostrarEfectoNieve aquí, después de procesar la descripción
-            mostrarEfectoNieve(descripcionTraducida, data.temperatura);
+            //mostrarEfectoNieve(descripcionTraducida, data.temperatura);
             // Obtener el icono correspondiente a la descripción
             const iconoClima = document.querySelector('.iconoclima img');
             if (iconoClima) {
