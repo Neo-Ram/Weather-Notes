@@ -252,5 +252,51 @@ async def obtener_usuario_actual(correo: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 #================================================================================================
-
+class Note(BaseModel):
+    title:str
+    content:str
+    timestamp:str
+    date: str
+    location: str
+#Crear nota
+@app.post("/notacrear/{correo}")
+async def crear_nota_por_correo(correo: str, note: Note):
+    try:
+        # Decodificar el correo si es necesario
+        correo_decodificado = correo.replace("%40", "@")
+        
+        # Obtener el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo_decodificado).stream()
+        
+        user_id = None
+        for user in query:
+            user_id = user.id
+            break
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Usuario no encontrado"
+            )
+        
+        # Crear la nota en la subcolección
+        note_data = {
+            "title": note.title,
+            "content": note.content,
+            "timestamp": note.timestamp,
+            "date": note.date,
+            "location": note.location
+        }
+        
+        # Agregar la nota a la subcolección 'notas' del usuario
+        notes_ref = db.collection('usuarios').document(user_id).collection('notas').document()
+        notes_ref.set(note_data)
+        
+        return {"message": "Nota creada exitosamente"}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+#================================================================================================
 
