@@ -299,4 +299,39 @@ async def crear_nota_por_correo(correo: str, note: Note):
         raise HTTPException(status_code=500, detail=str(e))
     
 #================================================================================================
-
+#Consultar notas
+@app.get("/obtenernotas/{correo}")
+async def obtener_notas_por_correo(correo: str):
+    try:
+        # Decodificar el correo si es necesario
+        correo_decodificado = correo.replace("%40", "@")
+        
+        # Obtener el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo_decodificado).stream()
+        
+        user_id = None
+        for user in query:
+            user_id = user.id
+            break
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Usuario no encontrado"
+            )
+        
+        # Obtener las notas del usuario
+        notes_ref = db.collection('usuarios').document(user_id).collection('notas')
+        notes = notes_ref.stream()
+        
+        notas_lista = []
+        for note in notes:
+            nota_data = note.to_dict()
+            nota_data['id'] = note.id
+            notas_lista.append(nota_data)
+            
+        return notas_lista
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
