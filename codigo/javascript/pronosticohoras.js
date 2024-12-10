@@ -60,6 +60,9 @@ function actualizarPronosticoHorario() {
     if (ciudadInput && ciudadInput.value) {
         obtenerPronosticoHorario(ciudadInput.value);
     }
+    // Disparar un evento personalizado cuando los datos estén listos
+    const event = new Event('datosActualizados');
+    document.dispatchEvent(event);
 }
 
 // Agregar evento al botón de búsqueda
