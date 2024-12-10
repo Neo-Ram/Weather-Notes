@@ -36,8 +36,12 @@ async function obtenerPronosticoHorario(ciudad) {
                 
                 // Actualizar icono del clima
                 const iconCode = pronostico.weather[0].icon;
+        horaDiv.dataset.weatherCode = iconCode;
+
                 const iconPath = iconMapping[iconCode] || 'assets/Icons/sun.png'; // Imagen por defecto si no hay mapeo
                 horaDiv.querySelector('img').src = iconPath;
+
+
                 
                 // Actualizar porcentaje de lluvia
                 const humedad = pronostico.main.humidity;

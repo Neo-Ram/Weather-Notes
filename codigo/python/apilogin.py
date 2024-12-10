@@ -258,6 +258,7 @@ class Note(BaseModel):
     timestamp:str
     date: str
     location: str
+    clima:str
 #Crear nota
 @app.post("/notacrear/{correo}")
 async def crear_nota_por_correo(correo: str, note: Note):

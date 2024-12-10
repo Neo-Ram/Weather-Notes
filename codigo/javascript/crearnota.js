@@ -15,7 +15,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const elementoCiudad = document.querySelector('#ciudadNombre');
         return elementoCiudad ? elementoCiudad.textContent : 'Ciudad no especificada';
     }
-
+    const weatherDescriptions = {
+    '01d': 'Despejado',
+    '01n': 'Despejado',
+    '02d': 'Pocas nubes',
+    '02n': 'Pocas nubes',
+    '03d': 'Nubes dispersas',
+    '03n': 'Nubes dispersas',
+    '04d': 'Muy nublado',
+    '04n': 'Muy nublado',
+    '09d': 'Lluvia ligera',
+    '09n': 'Lluvia ligera',
+    '10d': 'Lluvia',
+    '10n': 'Lluvia',
+    '11d': 'Tormenta',
+    '11n': 'Tormenta'
+};
     // Función para mostrar la sección
     function mostrarSeccionNota(event) {
         event.stopPropagation(); // Evitar que el click se propague
@@ -24,14 +39,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const horaDiv = event.currentTarget;
         const hora = horaDiv.querySelector('p').textContent;
         const ciudad = document.querySelector('#ciudadNombre').textContent;
-        const clima = document.querySelector('#descripcion').textContent;
+        //const clima = document.querySelector('#descripcion').textContent;
 
+        // Obtener el código del clima guardado en el atributo data
+        const weatherCode = horaDiv.dataset.weatherCode;
+        const climaDescripcion = weatherDescriptions[weatherCode] || 'Clima no disponible';
+        
+        // Actualizar el texto de clima
+        const climaUbicacion = seccionCrearNota.querySelector('.botonesnota h3');
+        climaUbicacion.textContent = climaDescripcion;
+        
         // Guardar datos para usarlos al guardar la nota
         seccionCrearNota.dataset.hora = hora;
         seccionCrearNota.dataset.ciudad= ciudad;
 
         // Establecer la fecha actual
         const fechaActual = new Date();
+        fechaActual.setDate(fechaActual.getDate() - 1); // Restar un día
         document.querySelector('#fechaNota').value = fechaActual.toISOString().split('T')[0];
 
         // Actualizar el texto del botón de ubicación con el nombre de la ciudad
@@ -39,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         //ubicacionButton.textContent = ciudad;
 
         // Actualizar el texto de clima
-        const climaUbicacion = seccionCrearNota.querySelector('.botonesnota h3');
+        //const climaUbicacion = seccionCrearNota.querySelector('.botonesnota h3');
         const Ubicacion = seccionCrearNota.querySelector('.botonesnota h2');
-        climaUbicacion.textContent = clima;
+        //climaUbicacion.textContent = clima;
         Ubicacion.textContent = ciudad;
 
         seccionCrearNota.style.display = 'block';
@@ -60,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const contenido = document.querySelector('.contenidonota textarea').value;
         const hora = seccionCrearNota.dataset.hora;
         const ciudad = seccionCrearNota.dataset.ciudad;
-        const clima = document.querySelector('#descripcion').textContent;
+        const clima = seccionCrearNota.querySelector('.botonesnota h3').textContent;
         const correo = localStorage.getItem('correo');
 
         const notaData = {
@@ -83,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 console.log('Nota creada exitosamente');
+                
                 ocultarSeccionNota();
             }
         } catch (error) {
