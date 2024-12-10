@@ -286,7 +286,8 @@ async def crear_nota_por_correo(correo: str, note: Note):
             "content": note.content,
             "timestamp": note.timestamp,
             "date": note.date,
-            "location": note.location
+            "location": note.location,
+            "clima": note.clima
         }
         
         # Agregar la nota a la subcolección 'notas' del usuario
@@ -411,7 +412,8 @@ async def editar_nota_por_correo(correo: str, note_id: str, note: Note):
             "content": note.content,
             "timestamp": note.timestamp,
             "date": note.date,
-            "location": note.location
+            "location": note.location,
+            "clima": note.clima
         }
         
         note_ref.update(note_data)
