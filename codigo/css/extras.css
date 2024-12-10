@@ -12,9 +12,9 @@
 
 body{
     background: linear-gradient(to bottom, #2AA5FF, #76c6ff);
-   overflow: hidden;
-   position: relative;
-   height: 100vh;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
@@ -43,13 +43,13 @@ body{
 
 .xnota {
     color: #fff;
-    display: grid;
-    grid-template-columns: 2fr 3fr 120px 100px;
-    gap: 20px;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 10px;
+    gap: 20px;
 }
 
 .xnota h2 {
@@ -57,27 +57,34 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: 2;
+    margin-right: 20px;
 }
 
 .xnota p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: 3;
+    margin-right: 20px;
 }
 
-.xnota .fecha {
-    text-align: center;
-    font-size: 0.9em;
+.xnota .tiempo {
+    display: flex;
+    align-items: center;
+    min-width: 120px;
+    margin-right: 20px;
+    margin-left: auto;
 }
 
 .xnota button {
+    min-width: 100px;
     background: none;
     color: #fff;
     border: solid 1px #fff;
     padding: 5px 10px;
     border-radius: 5px;
     transition: all 0.3s ease;
-    width: 100px;
     justify-self: end;
 }
 
@@ -319,4 +326,33 @@ body{
     background: #fff;
     color: #2AA5FF;
     
+}
+.tiempo {
+    display: flex;
+    align-items: center;
+    min-width: 120px;
+    margin-right: 20px;
+    margin-left: auto;
+}
+
+.hora {
+    min-width: 100px;
+    margin: 0;
+    white-space: nowrap;
+    color: #030000;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.hora-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.fecha {
+    margin: 0;
+    color: #fff;
+    font-size: 0.9em;
+    text-align: right;
 }

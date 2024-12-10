@@ -788,3 +788,16 @@ body{
     width: 1px;
     height: 1px;
 }
+.nota-item {
+    margin-bottom: 15px;
+}
+
+.nota-item .fecha {
+    color: #f6f6f6;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.nota-item h3 {
+    margin: 5px 0;
+}

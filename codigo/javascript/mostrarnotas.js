@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             notaElement.innerHTML = `
                 <h2>${nota.title}</h2>
                 <p>${nota.content}</p>
+                <p class="hora">${nota.timestamp}</p>
                 <p class="fecha">${nota.date}</p>
                 <button onclick="editarNota('${nota.id}')">editar</button>
+                
             `;
             bloqueNotas.appendChild(notaElement);
         });
@@ -33,15 +35,40 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function editarNota(id) {
+    console.log('ID recibido:', id);
+    console.log('Todas las notas:', notas);
+    
     const nota = notas.find(n => n.id === id);
+    console.log('Nota encontrada:', nota);
+    
     if (nota) {
+        console.log('Hora original:', nota.timestamp);
+        // Convertir el string de hora (ej: "5:00 p.m.") a formato HH:mm
+        let [tiempo, periodo] = nota.timestamp.split(' ');
+        let [horas, minutos] = tiempo.split(':');
+        horas = parseInt(horas);
+        
+        // Convertir a formato 24 horas
+        if (periodo === 'p.m.' && horas !== 12) {
+            horas = horas + 12;
+        } else if (periodo === 'a.m.' && horas === 12) {
+            horas = 0;
+        }
+        console.log('Horas en número:', horas);
+        // Formatear para el input time (HH:mm)
+        const horaFormateada = `${String(horas).padStart(2, '0')}:${minutos}`;
+        console.log('Hora formateada final:', horaFormateada);
+
         document.getElementById('tituloNota').value = nota.title;
         document.getElementById('contenidoNota').value = nota.content;
+        document.getElementById('horaNota').value = horaFormateada;
         document.getElementById('fechaNota').value = nota.date;
         document.querySelector('.ubicacion').textContent = nota.location || 'Ubicación no disponible';
         document.querySelector('.clima').textContent = nota.clima || 'Clima no disponible';
         document.querySelector('.crearnota').style.display = 'block';
         document.querySelector('.overlay').style.display = 'block';
+    } else {
+        console.log('No se encontró la nota con el ID:', id);
     }
 }
 

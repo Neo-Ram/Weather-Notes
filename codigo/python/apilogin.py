@@ -422,3 +422,55 @@ async def editar_nota_por_correo(correo: str, note_id: str, note: Note):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+#================================================================================================
+# ... existing code ...
+
+@app.get("/proximas-notas/{correo}")
+async def obtener_proximas_notas(correo: str):
+    try:
+        # Decodificar el correo si es necesario
+        correo_decodificado = correo.replace("%40", "@")
+        
+        # Obtener el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo_decodificado).stream()
+        
+        user_id = None
+        for user in query:
+            user_id = user.id
+            break
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Usuario no encontrado"
+            )
+        
+        # Obtener la fecha actual
+        fecha_actual = datetime.now()
+        
+        # Obtener todas las notas del usuario
+        notes_ref = db.collection('usuarios').document(user_id).collection('notas')
+        notes = notes_ref.stream()
+        
+        # Filtrar y ordenar las notas
+        notas_futuras = []
+        for note in notes:
+            nota_data = note.to_dict()
+            fecha_nota = datetime.strptime(nota_data['date'], '%Y-%m-%d')
+            if fecha_nota >= fecha_actual:
+                notas_futuras.append({
+                    'title': nota_data['title'],
+                    'timestamp': nota_data['timestamp'],
+                    'date': nota_data['date']
+                })
+        
+        # Ordenar por fecha y obtener las 3 primeras
+        notas_ordenadas = sorted(notas_futuras, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'))[:3]
+            
+        return notas_ordenadas
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+

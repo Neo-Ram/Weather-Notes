@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Establecer la fecha actual
         const fechaActual = new Date();
-        fechaActual.setDate(fechaActual.getDate() - 1); // Restar un día
+        fechaActual.setDate(fechaActual.getDate()); // Restar un día
         document.querySelector('#fechaNota').value = fechaActual.toISOString().split('T')[0];
 
         // Actualizar el texto del botón de ubicación con el nombre de la ciudad
