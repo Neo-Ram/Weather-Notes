@@ -278,7 +278,7 @@ body{
 }
 
 .horas {
-    margin: 0.8% 1%;
+    margin: 0.8% 2%;
     width: 8%;
     display: flex;
     flex-direction: column;
@@ -373,6 +373,7 @@ body{
     border-radius: 10px;
     transition: background-color 0.2s ease-in-out;
     padding: 5px;
+    position: relative;
 }
 
 .tarjetas .pronosticodias .lineapronosticodias:hover {
@@ -386,6 +387,11 @@ body{
 }
 .tarjetas .pronosticodias .lineapronosticodias img{
     width: 35px;
+}
+.tarjetas .pronosticodias .lineapronosticodias img[alt="notita"] {
+    position: absolute;
+    left: 25%;
+    width: 25px;
 }
 .tarjetas .pronosticodias .lineapronosticodias img.gotita {
     width: 20px;
@@ -602,6 +608,125 @@ body{
     z-index: 1999;
 }
 
+.crearnota2 {
+    width: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 2%;
+    padding-bottom: 1%;
+    color: #fff;
+    display: none;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2000;
+    transition: none;
+}
+
+.titulonota2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+    gap: 10px;
+}
+
+.titulonota2 input[type="text"] {
+    background: transparent;
+    font-size: 2em;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: #fff;
+    min-width: 0;
+    flex: 1;
+}
+
+.titulonota2 input[type="datetime-local"] {
+    background: transparent;
+    font-size: 1.2em;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    width: auto;
+    min-width: 200px;
+    max-width: 250px;
+    border: none;
+}
+
+.titulonota2 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.titulonota2 input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contenidonota2 {
+    margin-top: 2%;
+    height: 400px;
+}
+
+.contenidonota2 textarea {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    resize: none;
+    color: #fff;
+}
+.contenidonota2 textarea::placeholder{
+    color: #fff;
+}
+
+.botonesnota2 {
+    margin-top: 2%;
+}
+
+.botonesnota2 button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    margin-bottom: 1%;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.botonesnota2 button:hover {
+    background: rgba(42, 165, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.botonesnota-inferior2 {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1999;
+}
+
 /*Omar chambeando, todo lo que se vea aqui es de Omar*/
 .notita {
     visibility: hidden;
@@ -800,4 +925,56 @@ body{
 
 .nota-item h3 {
     margin: 5px 0;
+}
+
+.overlay2 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+}
+
+.crearnota2 {
+    width: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 2%;
+    padding-bottom: 1%;
+    color: #fff;
+    display: none;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2000;
+    transition: none;
+}
+
+.crearnota2 input,
+.crearnota2 textarea {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 100%;
+}
+
+.crearnota2 input::placeholder,
+.crearnota2 textarea::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.crearnota2 .calendario-input2 {
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    border-radius: 5px;
 }

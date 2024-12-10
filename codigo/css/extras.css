@@ -57,7 +57,7 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex: 2;
+    flex: 3;
     margin-right: 20px;
 }
 
@@ -69,11 +69,28 @@ body{
     margin-right: 20px;
 }
 
-.xnota .tiempo {
+.tiempo {
     display: flex;
     align-items: center;
     min-width: 120px;
     margin-right: 20px;
+    margin-left: auto;
+}
+
+.hora {
+    min-width: 100px;
+    margin: 0;
+    white-space: nowrap;
+    font-size: 0.9em;
+    text-align: right;
+    color: #fff;
+}
+
+.fecha {
+    margin: 0;
+    color: #fff;
+    font-size: 0.9em;
+    text-align: right;
     margin-left: auto;
 }
 
@@ -326,33 +343,4 @@ body{
     background: #fff;
     color: #2AA5FF;
     
-}
-.tiempo {
-    display: flex;
-    align-items: center;
-    min-width: 120px;
-    margin-right: 20px;
-    margin-left: auto;
-}
-
-.hora {
-    min-width: 100px;
-    margin: 0;
-    white-space: nowrap;
-    color: #030000;
-    font-size: 0.9em;
-    text-align: right;
-}
-
-.hora-input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.fecha {
-    margin: 0;
-    color: #fff;
-    font-size: 0.9em;
-    text-align: right;
 }
