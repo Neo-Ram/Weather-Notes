@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar elementos
-    const botonesEditar = document.querySelectorAll('.xnota button');
     const seccionCrearNota = document.querySelector('.crearnota');
     const botonCancelar = seccionCrearNota.querySelector('.botonesnota-inferior button:last-child');
 
@@ -22,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.display = 'none';
     }
 
-    // Añadir eventos a los botones de editar
-    botonesEditar.forEach(boton => {
-        boton.addEventListener('click', mostrarSeccionNota);
+    // Usar delegación de eventos para los botones de editar
+    document.addEventListener('click', function(event) {
+        if (event.target.matches('.xnota button')) {
+            mostrarSeccionNota(event);
+        }
     });
 
     botonCancelar.addEventListener('click', ocultarSeccionNota);

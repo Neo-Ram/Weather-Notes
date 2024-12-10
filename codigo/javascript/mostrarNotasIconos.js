@@ -10,6 +10,10 @@ document.addEventListener('datosActualizados', function () {
             // Hacer una solicitud para obtener las notas del usuario
             const response = await fetch(`http://localhost:8000/obtenernotas/${correo}`);
             const notas = await response.json();
+
+            // Obtener la ciudad actual del DOM
+            const ciudadActual = document.getElementById('ciudadNombre').textContent.trim().toLowerCase();
+
             console.log('Notas obtenidas:', notas);
 
             // Obtener todos los divs que representan horas
@@ -28,7 +32,7 @@ document.addEventListener('datosActualizados', function () {
                 // Obtener el texto de la hora desde el <p> y normalizarlo
                 const horaTexto = horaParrafo.textContent.trim().toLowerCase();
                 console.log('Revisando hora:', horaTexto);
-
+                
                 // Verificar si existe una nota para esta hora
                 const tieneNota = notas.some(nota => {
                     const horaNota = nota.timestamp.trim().toLowerCase();

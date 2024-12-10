@@ -35,16 +35,16 @@
 
     <section class="crearnota">
         <div class="titulonota">
-            <input type="text" placeholder="Titulo de la nota">
+            <input type="text" id="tituloNota" placeholder="Titulo de la nota">
             <input type="date" class="calendario-input" id="fechaNota">
         </div>
         <hr>
         <div class="contenidonota">
-            <textarea placeholder="Escribe tu nota aquí"></textarea>
+            <textarea id="contenidoNota" placeholder="Escribe tu nota aquí"></textarea>
         </div>
         <div class="botonesnota">
-            <button>ubicacion</button>
-            <h3>clima de la ubicacion</h3>
+            <h2 class="ubicacion">ubicacion</h2>
+            <h3 class="clima">clima de la ubicacion</h3>
             <div class="botonesnota-inferior">
                 <button>Guardar</button>
                 <button>Cancelar</button>
@@ -53,6 +53,7 @@
     </section>
 
     <script src="javascript/crearnotaclon.js"></script>
+    <script src="javascript/mostrarnotas.js"></script>
     <a href="clima.html" class="boton-regresar">
         ←
     </a>
