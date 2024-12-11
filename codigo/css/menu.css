@@ -214,37 +214,52 @@ body{
 
 .barrita{
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-top: 2%;
 }
 .barrita input{
     width: 350px;
-    padding :9px;
+    padding: 9px;
     padding-right: 35px;
     border-radius: 8px 0px 0px 8px;
-    border: 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 15%;
 }
+
+.barrita input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .barrita button{
-    background-color: #2AA5FF;
-    border: solid;
-    border-color: #fff;
-    padding: 3px 10px;
-    top: 0;
-    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: none;
+    padding: 0 15px;
     border-radius: 0 8px 8px 0;
     color: #fff;
-    
+    transition: background-color 0.3s ease;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .barrita button:hover{
-    background-color: #1b86d2;
+    background: rgba(255, 255, 255, 0.3);
 }
 .barrita button img{
     width: 20px;
     height: 20px;
-    color: #2AA5FF;
+    filter: brightness(0) invert(1);
 }
 
 
