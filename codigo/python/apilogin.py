@@ -6,6 +6,12 @@ from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 from datetime import datetime
+from win10toast import ToastNotifier
+from plyer import notification
+from winotify import Notification
+from notifypy import Notify
+import os
+
 # Crear instancia de FastAPI
 app = FastAPI()
 
@@ -295,6 +301,13 @@ async def crear_nota_por_correo(correo: str, note: Note):
         notes_ref = db.collection('usuarios').document(user_id).collection('notas').document()
         notes_ref.set(note_data)
         
+        
+        
+        # Enviar notificación
+        enviar_notificacion_windows(
+            "Nueva Nota Creada",
+            f"Título: {note.title}\nFecha: {note.date} Hora: {note.timestamp}"
+        )
         return {"message": "Nota creada exitosamente"}
         
     except Exception as e:
@@ -473,4 +486,30 @@ async def obtener_proximas_notas(correo: str):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+#================================================================================================
+# Crear instancia del notificador
+# Reemplaza la función de notificación
+def enviar_notificacion_windows(titulo, mensaje):
+    try:
+        notificacion = Notify()
+        notificacion.title = titulo
+        notificacion.message = mensaje
+        notificacion.icon = "post-it (1).png"
+        notificacion.send()
+        print("Notificación enviada")
+        return True
+    except Exception as e:
+        print(f"Error al enviar notificación: {str(e)}")
+        return False
 
+@app.get("/test-notificacion")
+async def test_notificacion():
+    try:
+        notificacion = Notify()
+        notificacion.title = "Prueba de Notificación"
+        notificacion.message = "Si puedes ver esto, las notificaciones están funcionando!"
+        notificacion.icon = "post-it (1).png"
+        notificacion.send()
+        return {"message": "Notificación enviada correctamente"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

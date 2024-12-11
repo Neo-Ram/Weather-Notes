@@ -8,7 +8,7 @@
 }
 
 ::selection{
-    background-color: #2AA5FF;
+    background-color: rgba(128, 128, 128, 0.7);
     color: #fff;
 }
 body {
@@ -37,7 +37,7 @@ body {
     background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
 }
 
-/*Time to finalise the cloud shape*/
+
 .cloud {
     width: 200px; 
     height: 60px;
@@ -69,7 +69,7 @@ body {
     transform: rotate(30deg);
 }
 
-/*Time to animate*/
+
 .x1 {
     animation: moveclouds 15s linear infinite;
     -webkit-animation: moveclouds 15s linear infinite;
@@ -204,34 +204,40 @@ body {
 
 
 .container button{
-    background-color: #2AA5FF;
-    color:  #fff;
+    background: rgba(128, 128, 128, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #fff;
     font-size: 12px;
     padding: 10px 45px;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .container button:hover{
-    background-color: #fff;
-    color: #2AA5FF;
-    border-color: #2AA5FF;
+    background: rgba(128, 128, 128, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.5);
 }
 
 
 .container button.hidden{
     background-color: transparent;
     border-color: #fff;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
+
 .container button.hidden:hover{
-    background-color: #fff;
+    background: rgba(128, 128, 128, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.3);
+    color: #fff;
 }
 
 .container form{
@@ -260,13 +266,19 @@ body {
     position: absolute;
     top: 0;
     height: 100%;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .sign-in{
     left: 0;
     width: 50%;
     z-index: 2;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 
@@ -279,6 +291,9 @@ body {
     width: 50%;
     opacity: 0;
     z-index: 1;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .container.active .sign-up{
@@ -334,9 +349,9 @@ body {
 }
 
 .toggle{
-    background-color: #2AA5FF;
-    height: 100%;
-    background: linear-gradient(to right, #6bbefa, #2AA5FF);
+    background: rgba(128, 128, 128, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: #fff;
     position: relative;
     left: -100%;
@@ -344,6 +359,8 @@ body {
     width: 200%;
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .container.active .toggle{
