@@ -55,7 +55,7 @@ body{
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 90px;
-    z-index: 1000;
+    z-index: 1001;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -977,4 +977,121 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 5px;
     border-radius: 5px;
+}
+
+/* Estilo para el botón de campana */
+.bell-btn {
+    font-size: 25px;
+    background-color: rgba(17, 17, 17, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 15px;
+    position: fixed;
+    top: 85px;
+    left: 15px;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.bell-btn:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+.bell-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+/* Estilo para la barra de notificaciones */
+.barranotificaciones {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 90px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.barranotificaciones h1 {
+    color: #fff;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+.barranotificaciones hr {
+    border: none;
+    height: 1px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.barranotificaciones .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.barranotificaciones.active {
+    width: 250px;
+}
+
+.notificaciones-contenido {
+    padding: 20px;
+    color: #fff;
+}
+
+/* Estilos para las notificaciones */
+.notificacion-item {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notificacion-item:hover {
+    transform: translateX(5px);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.notificacion-tiempo {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.notificacion-titulo {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.notificacion-mensaje {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
 }

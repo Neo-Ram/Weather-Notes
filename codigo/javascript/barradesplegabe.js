@@ -9,3 +9,8 @@ function toggleBarraLateral() {
         barralateral.classList.add('active');
     }
     }
+
+function toggleBarraNotificaciones() {
+    const barraNotificaciones = document.querySelector('.barranotificaciones');
+    barraNotificaciones.classList.toggle('active');
+}

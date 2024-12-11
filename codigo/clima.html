@@ -23,6 +23,25 @@
     </div>
     
     <button class="hamburger-btn" onclick="toggleBarraLateral()">☰</button>
+    <button class="bell-btn" onclick="toggleBarraNotificaciones()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+        </svg>
+    </button>
+
+    <div class="barranotificaciones">
+        <h1>Notificaciones</h1>
+        <hr>
+        <a href="#" class="close-btn" onclick="toggleBarraNotificaciones()">×</a>
+        <div class="notificaciones-contenido">
+            <!-- Plantilla de notificación -->
+            <div class="notificacion-item">
+                <div class="notificacion-tiempo">Hace 5 minutos</div>
+                <div class="notificacion-titulo">Título de la notificación</div>
+                <div class="notificacion-mensaje">Este es un mensaje de ejemplo para la notificación.</div>
+            </div>
+        </div>
+    </div>
 
     <section class="pronosticoprincipal">
         <div class="content">
@@ -244,7 +263,7 @@
             </div>
         </div>
     </section>
-
+    <br>
     <!--Seccion para crear notas que se oculta automaticamente-->
     <section class="crearnota"  >
         <div class="titulonota">
