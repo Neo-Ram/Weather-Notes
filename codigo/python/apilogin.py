@@ -11,6 +11,7 @@ from plyer import notification
 from winotify import Notification
 from notifypy import Notify
 import os
+import asyncio
 
 # Crear instancia de FastAPI
 app = FastAPI()
@@ -265,6 +266,26 @@ class Note(BaseModel):
     date: str
     location: str
     clima:str
+
+#Definir climas problematicos
+CLIMAS_PROBLEMATICOS = {
+    # Lluvias
+    "Lluvia": "¡Precaución! Lluvia en el área. Se recomienda llevar paraguas.",
+    "Lluvia ligera": "¡Aviso! Lluvia ligera en el área. Se recomienda llevar paraguas.",
+    "Lluvia moderada": "¡Precaución! Lluvia moderada. Conduzca con cuidado y lleve paraguas.",
+    "Lluvia intensa": "¡ALERTA! Lluvia intensa. Riesgo de inundaciones. Evite zonas propensas a inundarse.",
+    
+    # Nieves
+    "Nieve": "¡Precaución! Nevadas en el área. Abríguese bien.",
+    "Nieve ligera": "¡Aviso! Nevada ligera. Tome precauciones al caminar.",
+    "Nieve intensa": "¡ALERTA! Nevada intensa. Evite salir si no es necesario.",
+    "Lluvia de nieve ligera": "¡Precaución! Aguanieve en el área. Superficies pueden estar resbaladizas.",
+    
+    # Otros fenómenos
+    "Tormenta eléctrica": "¡ALERTA! Tormenta eléctrica. Manténgase en interiores y alejado de ventanas.",
+    "Neblina": "¡Precaución! Baja visibilidad por neblina. Use luces bajas al conducir.",
+    "Polvo": "¡Precaución! Condiciones de polvo. Use mascarilla si sale al exterior."
+}
 #Crear nota
 @app.post("/notacrear/{correo}")
 async def crear_nota_por_correo(correo: str, note: Note):
@@ -300,15 +321,36 @@ async def crear_nota_por_correo(correo: str, note: Note):
         # Agregar la nota a la subcolección 'notas' del usuario
         notes_ref = db.collection('usuarios').document(user_id).collection('notas').document()
         notes_ref.set(note_data)
-        
-        
-        
+    
         # Enviar notificación
         enviar_notificacion_windows(
             "Nueva Nota Creada",
             f"Título: {note.title}\nFecha: {note.date} Hora: {note.timestamp}"
         )
-        return {"message": "Nota creada exitosamente"}
+
+        # Verificar si el clima es problemático
+        mensaje_advertencia = None
+        if note.clima in CLIMAS_PROBLEMATICOS:
+            mensaje_advertencia = CLIMAS_PROBLEMATICOS[note.clima]
+            
+            # Esperar 2 segundos antes de mostrar la alerta meteorológica
+            await asyncio.sleep(2)
+            
+            # Determinar el icono según la severidad
+            icono = "⚠️"
+            if "ALERTA" in mensaje_advertencia:
+                icono = "🚨"
+            elif "Aviso" in mensaje_advertencia:
+                icono = "ℹ️"
+                
+            # Enviar notificación de advertencia
+            enviar_notificacion_windows(
+                f"{icono} Alerta Meteorológica",
+                mensaje_advertencia
+            )
+        return {
+            "message": "Nota creada exitosamente",
+            "advertencia": mensaje_advertencia}
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

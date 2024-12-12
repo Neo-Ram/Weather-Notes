@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <p class="hora">${nota.timestamp}</p>
                 <p class="fecha">${nota.date}</p>
                 <button onclick="editarNota('${nota.id}')">editar</button>
-                
+                <button onclick="eliminarNota('${nota.id}')" class="eliminar-btn">eliminar</button>
             `;
             bloqueNotas.appendChild(notaElement);
         });
@@ -33,7 +33,33 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Error al cargar las notas:', error);
     }
 });
+// Función para eliminar nota
+async function eliminarNota(id) {
+    try {
+        const correo = localStorage.getItem('correo');
+        if (!correo) return;
 
+        // Confirmar antes de eliminar
+        if (!confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
+            return;
+        }
+
+        const response = await fetch(`http://localhost:8000/eliminarnota/${correo}/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar la nota');
+        }
+
+        // Recargar las notas después de eliminar
+        location.reload();
+
+    } catch (error) {
+        console.error('Error al eliminar la nota:', error);
+        alert('Error al eliminar la nota');
+    }
+}
 function editarNota(id) {
     console.log('ID recibido:', id);
     console.log('Todas las notas:', notas);

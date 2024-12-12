@@ -38,6 +38,12 @@ const configuracionesClima = {
             ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
             : 'linear-gradient(to bottom, #565656, #ffffff)'
     },
+    'Polvo': {
+        icono: 'nube',
+        fondo: esHoraNocturna()
+            ? 'linear-gradient(to bottom, #002574, #6d6d6d)'
+            : 'linear-gradient(to bottom, #565656, #ffffff)'
+    },
     //Lluvia
     'Lluvia ligera': {
         icono: 'lluvia',
@@ -61,6 +67,14 @@ const configuracionesClima = {
         fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
     },
     'Nieve intensa': {
+        icono: 'nieve',
+        fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
+    },
+    'Nieve ligera': {
+        icono: 'nieve',
+        fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
+    },
+    'Lluvia de nieve ligera': {
         icono: 'nieve',
         fondo: 'linear-gradient(to bottom, #82b8ca, #afe9fc)'
     },
@@ -286,13 +300,13 @@ function actualizarIconoClima() {
             if(esHoraNocturna()){
                 iniciarEstrellas();
             }
-        } else if (descripcion === 'Pocas nubes' || descripcion === 'Nubes dispersas' || descripcion === 'Nubes rotas' || descripcion === 'Neblina' || descripcion === 'Nubes cubiertas') {
+        } else if (descripcion === 'Pocas nubes' || descripcion === 'Nubes dispersas' || descripcion === 'Nubes rotas' || descripcion === 'Neblina' || descripcion === 'Nubes cubiertas' || descripcion === 'Polvo') {
             iniciarNubes(true);
         } else if (descripcion === 'Lluvia ligera' || descripcion === 'Lluvia' || descripcion === 'Lluvia intensa' || descripcion === 'Lluvia moderada') {
             iniciarLluvia();
         } else if (descripcion === 'Tormenta eléctrica') {
             iniciarTormenta();
-        } else if (descripcion === 'Nieve' || descripcion === 'Nieve intensa') {
+        } else if (descripcion === 'Nieve' || descripcion === 'Nieve intensa' || descripcion === 'Nieve ligera' || descripcion === 'Lluvia de nieve ligera') {
             iniciarNieve();
         } else if (descripcion === 'Noche/Despejado') {
             iniciarEstrellas();

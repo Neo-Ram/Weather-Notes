@@ -19,6 +19,9 @@ const traducciones = {
     "heavy intensity rain": "Lluvia intensa",
     "light intensity shower rain": "Lluvia ligera",  //YA
     "very heavy rain": "Lluvia intensa",
+    "light snow": "Nieve ligera",
+    "light shower snow": "Lluvia de nieve ligera",
+    "dust": "Polvo"
     // Agrega más traducciones según sea necesario
 };
 const iconosPorDescripcion = {
@@ -35,7 +38,10 @@ const iconosPorDescripcion = {
     "Nubes cubiertas": "assets/Icons/clouds.png",
     "Lluvia intensa": "assets/Icons/rain.png",
     "Nieve intensa": "assets/Icons/snow.png",
-    "Lluvia intensa": "assets/Icons/rain.png"
+    "Lluvia intensa": "assets/Icons/rain.png",
+    "Nieve ligera": "assets/Icons/snow.png",
+    "Lluvia de nieve ligera": "assets/Icons/snow.png",
+    "Polvo": "assets/Icons/clouds.png"
 };
 
 
