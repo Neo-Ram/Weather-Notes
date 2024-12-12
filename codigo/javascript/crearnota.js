@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar elementos
-    const elementosInteractivos = document.querySelectorAll('[id^="hora"], [id^="dia"]');
+    const elementosInteractivos = document.querySelectorAll('[id^="hora"]');
     const seccionCrearNota = document.querySelector('.crearnota');
     const botonCancelar = seccionCrearNota.querySelector('.botonesnota-inferior button:last-child');
     const botonGuardar = seccionCrearNota.querySelector('.botonesnota-inferior button:first-child');

@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="css/snow.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        .titulonota3 input[type="datetime-local"] {
+            background: transparent;
+            font-size: 1.2em;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            padding: 5px;
+            width: auto;
+            min-width: 200px;
+            max-width: 250px;
+            border: none;
+        }
+
+        /* Estilo para el icono del calendario */
+        .titulonota3 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.7;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -303,6 +324,26 @@
             </div>
         </div>
     </section>
+
+    <section class="crearnota3">
+        <div class="titulonota3">
+            <input type="text" placeholder="Titulo de la nota">
+            <input type="datetime-local" class="calendario-input3" id="fechaNota">
+        </div>
+        <hr>
+        <div class="contenidonota3">
+            <textarea placeholder="Escribe tu nota aquí"></textarea>
+        </div>
+        <div class="botonesnota3">
+            <h2 class="ubicacion3">ubicacion</h2>
+            <h3>clima de la ubicacion</h3>
+            <div class="botonesnota-inferior3">
+                <button>Guardar</button>
+                <button>Cancelar</button>
+            </div>
+        </div>
+    </section>
+
     <script src="javascript/busquedaclima.js"></script>
     <script src="javascript/barradesplegabe.js"></script>
     <script src="javascript/clima+.js"></script>
@@ -317,5 +358,6 @@
     <script src="javascript/notasproximas.js"></script>
     <script src="javascript/crearnotaz.js"></script>
     <script src="javascript/crearnotasz.js"></script>
+    <script src="javascript/crearnotaahoraespersonal.js"></script>
 </body>
 </html>
