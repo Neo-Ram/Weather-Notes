@@ -555,3 +555,40 @@ async def test_notificacion():
         return {"message": "Notificación enviada correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+#==========================================================================
+@app.get("/verificarnotas/{correo}/{fecha}")
+async def verificar_notas(correo: str, fecha: str):
+    try:
+        # Decodificar el correo si es necesario
+        correo_decodificado = correo.replace("%40", "@")
+        
+        # Obtener el usuario por correo
+        users_ref = db.collection('usuarios')
+        query = users_ref.where('correo', '==', correo_decodificado).stream()
+        
+        user_id = None
+        for user in query:
+            user_id = user.id
+            break
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, 
+                detail="Usuario no encontrado"
+            )
+        
+        # Buscar notas para esa fecha
+        notes_ref = db.collection('usuarios').document(user_id).collection('notas')
+        notas = notes_ref.where('date', '==', fecha).stream()
+        
+        # Verificar si hay al menos una nota
+        tiene_notas = False
+        for nota in notas:
+            tiene_notas = True
+            break
+        
+        return {"tieneNotas": tiene_notas}
+        
+    except Exception as e:
+        print(f"Error al verificar notas: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
